@@ -1,0 +1,1499 @@
+Class: android.view.accessibility.IAccessibilityManager
+
+   1	int addClient(android.view.accessibility.IAccessibilityManagerClient p1, int n2);
+   2	boolean sendAccessibilityEvent(android.view.accessibility.AccessibilityEvent p1, int n2);
+   3	java.util.List getInstalledAccessibilityServiceList(int n1);
+   4	java.util.List getEnabledAccessibilityServiceList(int n1, int n2);
+   5	void interrupt(int n1);
+   6	int addAccessibilityInteractionConnection(android.view.IWindow p1, android.view.accessibility.IAccessibilityInteractionConnection p2, int n3);
+   7	void removeAccessibilityInteractionConnection(android.view.IWindow p1);
+   8	void registerUiTestAutomationService(android.os.IBinder p1, android.accessibilityservice.IAccessibilityServiceClient p2, android.accessibilityservice.AccessibilityServiceInfo p3);
+   9	void unregisterUiTestAutomationService(android.accessibilityservice.IAccessibilityServiceClient p1);
+  10	void temporaryEnableAccessibilityStateUntilKeyguardRemoved(android.content.ComponentName p1, boolean p2);
+
+
+Class: android.accounts.IAccountManager
+
+   1	java.lang.String getPassword(android.accounts.Account p1);
+   2	java.lang.String getUserData(android.accounts.Account p1, java.lang.String s2);
+   3	android.accounts.AuthenticatorDescription[] getAuthenticatorTypes();
+   4	android.accounts.Account[] getAccounts(java.lang.String s1);
+   5	android.accounts.Account[] getAccountsForPackage(java.lang.String s1, int n2);
+   6	android.accounts.Account[] getAccountsByTypeForPackage(java.lang.String s1, java.lang.String s2);
+   7	android.accounts.Account[] getAccountsAsUser(java.lang.String s1, int n2);
+   8	void hasFeatures(android.accounts.IAccountManagerResponse p1, android.accounts.Account p2, java.lang.String[] p3);
+   9	void getAccountsByFeatures(android.accounts.IAccountManagerResponse p1, java.lang.String s2, java.lang.String[] p3);
+  10	boolean addAccountExplicitly(android.accounts.Account p1, java.lang.String s2, android.os.Bundle p3);
+  11	void removeAccount(android.accounts.IAccountManagerResponse p1, android.accounts.Account p2);
+  12	void invalidateAuthToken(java.lang.String s1, java.lang.String s2);
+  13	java.lang.String peekAuthToken(android.accounts.Account p1, java.lang.String s2);
+  14	void setAuthToken(android.accounts.Account p1, java.lang.String s2, java.lang.String s3);
+  15	void setPassword(android.accounts.Account p1, java.lang.String s2);
+  16	void clearPassword(android.accounts.Account p1);
+  17	void setUserData(android.accounts.Account p1, java.lang.String s2, java.lang.String s3);
+  18	void updateAppPermission(android.accounts.Account p1, java.lang.String s2, int n3, boolean p4);
+  19	void getAuthToken(android.accounts.IAccountManagerResponse p1, android.accounts.Account p2, java.lang.String s3, boolean p4, boolean p5, android.os.Bundle p6);
+  20	void addAccount(android.accounts.IAccountManagerResponse p1, java.lang.String s2, java.lang.String s3, java.lang.String[] p4, boolean p5, android.os.Bundle p6);
+  21	void updateCredentials(android.accounts.IAccountManagerResponse p1, android.accounts.Account p2, java.lang.String s3, boolean p4, android.os.Bundle p5);
+  22	void editProperties(android.accounts.IAccountManagerResponse p1, java.lang.String s2, boolean p3);
+  23	void confirmCredentialsAsUser(android.accounts.IAccountManagerResponse p1, android.accounts.Account p2, android.os.Bundle p3, boolean p4, int n5);
+  24	void getAuthTokenLabel(android.accounts.IAccountManagerResponse p1, java.lang.String s2, java.lang.String s3);
+  25	boolean addSharedAccountAsUser(android.accounts.Account p1, int n2);
+  26	android.accounts.Account[] getSharedAccountsAsUser(int n1);
+  27	boolean removeSharedAccountAsUser(android.accounts.Account p1, int n2);
+
+
+Class: android.app.IActivityManager
+
+   1	void startRunning(java.lang.String s1, java.lang.String s2, java.lang.String s3, java.lang.String s4);
+   2	void handleApplicationCrash(android.os.IBinder p1, android.app.ApplicationErrorReport.CrashInfo p2);
+   3	int startActivity(android.app.IApplicationThread p1, java.lang.String s2, android.content.Intent p3, java.lang.String s4, android.os.IBinder p5, java.lang.String s6, int n7, int n8, java.lang.String s9, android.os.ParcelFileDescriptor p10, android.os.Bundle p11);
+   4	void unhandledBack();
+   5	android.os.ParcelFileDescriptor openContentUri(android.net.Uri p1);
+  11	boolean finishActivity(android.os.IBinder p1, int n2, android.content.Intent p3);
+  12	android.content.Intent registerReceiver(android.app.IApplicationThread p1, java.lang.String s2, android.content.IIntentReceiver p3, android.content.IntentFilter p4, java.lang.String s5, int n6);
+  13	void unregisterReceiver(android.content.IIntentReceiver p1);
+  14	int broadcastIntent(android.app.IApplicationThread p1, android.content.Intent p2, java.lang.String s3, android.content.IIntentReceiver p4, int n5, java.lang.String s6, android.os.Bundle p7, java.lang.String s8, int n9, boolean p10, boolean p11, int n12);
+  15	void unbroadcastIntent(android.app.IApplicationThread p1, android.content.Intent p2, int n3);
+  16	void finishReceiver(android.os.IBinder p1, int n2, java.lang.String s3, android.os.Bundle p4, boolean p5);
+  17	void attachApplication(android.app.IApplicationThread p1);
+  18	void activityIdle(android.os.IBinder p1, android.content.res.Configuration p2, boolean p3);
+  19	void activityPaused(android.os.IBinder p1);
+  20	void activityStopped(android.os.IBinder p1, android.os.Bundle p2, android.graphics.Bitmap p3, java.lang.CharSequence p4);
+  21	java.lang.String getCallingPackage(android.os.IBinder p1);
+  22	android.content.ComponentName getCallingActivity(android.os.IBinder p1);
+  23	java.util.List getTasks(int n1, int n2, android.app.IThumbnailReceiver p3);
+  24	void moveTaskToFront(int n1, int n2, android.os.Bundle p3);
+  25	void moveTaskToBack(int n1);
+  26	void moveTaskBackwards(int n1);
+  27	int getTaskForActivity(android.os.IBinder p1, boolean p2);
+  28	void reportThumbnail(android.os.IBinder p1, android.graphics.Bitmap p2, java.lang.CharSequence p3);
+  29	android.app.IActivityManager.ContentProviderHolder getContentProvider(android.app.IApplicationThread p1, java.lang.String s2, int n3, boolean p4);
+  30	void publishContentProviders(android.app.IApplicationThread p1, java.util.List p2);
+  31	boolean refContentProvider(android.os.IBinder p1, int n2, int n3);
+  32	void finishSubActivity(android.os.IBinder p1, java.lang.String s2, int n3);
+  33	android.app.PendingIntent getRunningServiceControlPanel(android.content.ComponentName p1);
+  34	android.content.ComponentName startService(android.app.IApplicationThread p1, android.content.Intent p2, java.lang.String s3, int n4);
+  35	int stopService(android.app.IApplicationThread p1, android.content.Intent p2, java.lang.String s3, int n4);
+  36	int bindService(android.app.IApplicationThread p1, android.os.IBinder p2, android.content.Intent p3, java.lang.String s4, android.app.IServiceConnection p5, int n6, int n7);
+  37	boolean unbindService(android.app.IServiceConnection p1);
+  38	void publishService(android.os.IBinder p1, android.content.Intent p2, android.os.IBinder p3);
+  39	void activityResumed(android.os.IBinder p1);
+  40	void goingToSleep();
+  41	void wakingUp();
+  42	void setDebugApp(java.lang.String s1, boolean p2, boolean p3);
+  43	void setAlwaysFinish(boolean p1);
+  44	boolean startInstrumentation(android.content.ComponentName p1, java.lang.String s2, int n3, android.os.Bundle p4, android.app.IInstrumentationWatcher p5, android.app.IUiAutomationConnection p6, int n7);
+  45	void finishInstrumentation(android.app.IApplicationThread p1, int n2, android.os.Bundle p3);
+  46	android.content.res.Configuration getConfiguration();
+  47	void updateConfiguration(android.content.res.Configuration p1);
+  48	boolean stopServiceToken(android.content.ComponentName p1, android.os.IBinder p2, int n3);
+  49	android.content.ComponentName getActivityClassForToken(android.os.IBinder p1);
+  50	java.lang.String getPackageForToken(android.os.IBinder p1);
+  51	void setProcessLimit(int n1);
+  52	int getProcessLimit();
+  53	int checkPermission(java.lang.String s1, int n2, int n3);
+  54	int checkUriPermission(android.net.Uri p1, int n2, int n3, int n4);
+  55	void grantUriPermission(android.app.IApplicationThread p1, java.lang.String s2, android.net.Uri p3, int n4);
+  56	void revokeUriPermission(android.app.IApplicationThread p1, android.net.Uri p2, int n3);
+  57	void setActivityController(android.app.IActivityController p1);
+  58	void showWaitingForDebugger(android.app.IApplicationThread p1, boolean p2);
+  59	void signalPersistentProcesses(int n1);
+  60	java.util.List getRecentTasks(int n1, int n2, int n3);
+  61	void serviceDoneExecuting(android.os.IBinder p1, int n2, int n3, int n4);
+  62	void activityDestroyed(android.os.IBinder p1);
+  63	android.content.IIntentSender getIntentSender(int n1, java.lang.String s2, android.os.IBinder p3, java.lang.String s4, int n5, android.content.Intent[] p6, java.lang.String[] p7, int n8, android.os.Bundle p9, int n10);
+  64	void cancelIntentSender(android.content.IIntentSender p1);
+  65	java.lang.String getPackageForIntentSender(android.content.IIntentSender p1);
+  66	void enterSafeMode();
+  67	boolean startNextMatchingActivity(android.os.IBinder p1, android.content.Intent p2, android.os.Bundle p3);
+  68	void noteWakeupAlarm(android.content.IIntentSender p1);
+  69	void removeContentProvider(android.os.IBinder p1, boolean p2);
+  70	void setRequestedOrientation(android.os.IBinder p1, int n2);
+  71	int getRequestedOrientation(android.os.IBinder p1);
+  72	void unbindFinished(android.os.IBinder p1, android.content.Intent p2, boolean p3);
+  73	void setProcessForeground(android.os.IBinder p1, int n2, boolean p3);
+  74	void setServiceForeground(android.content.ComponentName p1, android.os.IBinder p2, int n3, android.app.Notification p4, boolean p5);
+  75	boolean moveActivityTaskToBack(android.os.IBinder p1, boolean p2);
+  76	void getMemoryInfo(android.app.ActivityManager.MemoryInfo p1);
+  77	java.util.List getProcessesInErrorState();
+  78	boolean clearApplicationUserData(java.lang.String s1, android.content.pm.IPackageDataObserver p2, int n3);
+  79	void forceStopPackage(java.lang.String s1, int n2);
+  80	boolean killPids(int[] p1, java.lang.String s2, boolean p3);
+  81	java.util.List getServices(int n1, int n2);
+  82	android.app.ActivityManager.TaskThumbnails getTaskThumbnails(int n1);
+  83	java.util.List getRunningAppProcesses();
+  84	android.content.pm.ConfigurationInfo getDeviceConfigurationInfo();
+  85	android.os.IBinder peekService(android.content.Intent p1, java.lang.String s2);
+  86	boolean profileControl(java.lang.String s1, int n2, boolean p3, java.lang.String s4, android.os.ParcelFileDescriptor p5, int n6);
+  87	boolean shutdown(int n1);
+  88	void stopAppSwitches();
+  89	void resumeAppSwitches();
+  90	boolean bindBackupAgent(android.content.pm.ApplicationInfo p1, int n2);
+  91	void backupAgentCreated(java.lang.String s1, android.os.IBinder p2);
+  92	void unbindBackupAgent(android.content.pm.ApplicationInfo p1);
+  93	int getUidForIntentSender(android.content.IIntentSender p1);
+  94	int handleIncomingUser(int n1, int n2, int n3, boolean p4, boolean p5, java.lang.String s6, java.lang.String s7);
+  95	android.graphics.Bitmap getTaskTopThumbnail(int n1);
+  96	void killApplicationWithAppId(java.lang.String s1, int n2, java.lang.String s3);
+  97	void closeSystemDialogs(java.lang.String s1);
+  98	android.os.Debug.MemoryInfo[] getProcessMemoryInfo(int[] p1);
+  99	void killApplicationProcess(java.lang.String s1, int n2);
+ 100	int startActivityIntentSender(android.app.IApplicationThread p1, android.content.IntentSender p2, android.content.Intent p3, java.lang.String s4, android.os.IBinder p5, java.lang.String s6, int n7, int n8, int n9, android.os.Bundle p10);
+ 101	void overridePendingTransition(android.os.IBinder p1, java.lang.String s2, int n3, int n4);
+ 102	boolean handleApplicationWtf(android.os.IBinder p1, java.lang.String s2, android.app.ApplicationErrorReport.CrashInfo p3);
+ 103	void killBackgroundProcesses(java.lang.String s1, int n2);
+ 104	boolean isUserAMonkey();
+ 105	android.app.IActivityManager.WaitResult startActivityAndWait(android.app.IApplicationThread p1, java.lang.String s2, android.content.Intent p3, java.lang.String s4, android.os.IBinder p5, java.lang.String s6, int n7, int n8, java.lang.String s9, android.os.ParcelFileDescriptor p10, android.os.Bundle p11, int n12);
+ 106	boolean willActivityBeVisible(android.os.IBinder p1);
+ 107	int startActivityWithConfig(android.app.IApplicationThread p1, java.lang.String s2, android.content.Intent p3, java.lang.String s4, android.os.IBinder p5, java.lang.String s6, int n7, int n8, android.content.res.Configuration p9, android.os.Bundle p10, int n11);
+ 108	java.util.List getRunningExternalApplications();
+ 109	void finishHeavyWeightApp();
+ 110	void handleApplicationStrictModeViolation(android.os.IBinder p1, int n2, android.os.StrictMode.ViolationInfo p3);
+ 111	boolean isImmersive(android.os.IBinder p1);
+ 112	void setImmersive(android.os.IBinder p1, boolean p2);
+ 113	boolean isTopActivityImmersive();
+ 114	void crashApplication(int n1, int n2, java.lang.String s3, java.lang.String s4);
+ 115	java.lang.String getProviderMimeType(android.net.Uri p1, int n2);
+ 116	android.os.IBinder newUriPermissionOwner(java.lang.String s1);
+ 117	void grantUriPermissionFromOwner(android.os.IBinder p1, int n2, java.lang.String s3, android.net.Uri p4, int n5);
+ 118	void revokeUriPermissionFromOwner(android.os.IBinder p1, android.net.Uri p2, int n3);
+ 119	int checkGrantUriPermission(int n1, java.lang.String s2, android.net.Uri p3, int n4);
+ 120	boolean dumpHeap(java.lang.String s1, int n2, boolean p3, java.lang.String s4, android.os.ParcelFileDescriptor p5);
+ 121	int startActivities(android.app.IApplicationThread p1, java.lang.String s2, android.content.Intent[] p3, java.lang.String[] p4, android.os.IBinder p5, android.os.Bundle p6, int n7);
+ 122	boolean isUserRunning(int n1, boolean p2);
+ 123	void activitySlept(android.os.IBinder p1);
+ 124	int getFrontActivityScreenCompatMode();
+ 125	void setFrontActivityScreenCompatMode(int n1);
+ 126	int getPackageScreenCompatMode(java.lang.String s1);
+ 127	void setPackageScreenCompatMode(java.lang.String s1, int n2);
+ 128	boolean getPackageAskScreenCompat(java.lang.String s1);
+ 129	void setPackageAskScreenCompat(java.lang.String s1, boolean p2);
+ 130	boolean switchUser(int n1);
+ 131	boolean removeSubTask(int n1, int n2);
+ 132	boolean removeTask(int n1, int n2);
+ 133	void registerProcessObserver(android.app.IProcessObserver p1);
+ 134	void unregisterProcessObserver(android.app.IProcessObserver p1);
+ 135	boolean isIntentSenderTargetedToPackage(android.content.IIntentSender p1);
+ 136	void updatePersistentConfiguration(android.content.res.Configuration p1);
+ 137	long[] getProcessPss(int[] p1);
+ 138	void showBootMessage(java.lang.CharSequence p1, boolean p2);
+ 139	void dismissKeyguardOnNextActivity();
+ 140	void killAllBackgroundProcesses();
+ 141	android.app.IActivityManager.ContentProviderHolder getContentProviderExternal(java.lang.String s1, int n2, android.os.IBinder p3);
+ 142	void removeContentProviderExternal(java.lang.String s1, android.os.IBinder p2);
+ 143	void getMyMemoryState(android.app.ActivityManager.RunningAppProcessInfo p1);
+ 144	boolean killProcessesBelowForeground(java.lang.String s1);
+ 145	android.content.pm.UserInfo getCurrentUser();
+ 146	boolean targetTaskAffinityMatchesActivity(android.os.IBinder p1, java.lang.String s2);
+ 147	boolean navigateUpTo(android.os.IBinder p1, android.content.Intent p2, int n3, android.content.Intent p4);
+ 148	void setLockScreenShown(boolean p1);
+ 149	boolean finishActivityAffinity(android.os.IBinder p1);
+ 150	int getLaunchedFromUid(android.os.IBinder p1);
+ 151	void unstableProviderDied(android.os.IBinder p1);
+ 152	boolean isIntentSenderAnActivity(android.content.IIntentSender p1);
+ 153	int startActivityAsUser(android.app.IApplicationThread p1, java.lang.String s2, android.content.Intent p3, java.lang.String s4, android.os.IBinder p5, java.lang.String s6, int n7, int n8, java.lang.String s9, android.os.ParcelFileDescriptor p10, android.os.Bundle p11, int n12);
+ 154	int stopUser(int n1, android.app.IStopUserCallback p2);
+ 155	void registerUserSwitchObserver(android.app.IUserSwitchObserver p1);
+ 156	void unregisterUserSwitchObserver(android.app.IUserSwitchObserver p1);
+ 157	int[] getRunningUserIds();
+ 158	void requestBugReport();
+ 159	long inputDispatchingTimedOut(int n1, boolean p2, java.lang.String s3);
+ 160	void clearPendingBackup();
+ 161	android.content.Intent getIntentForIntentSender(android.content.IIntentSender p1);
+ 162	android.os.Bundle getAssistContextExtras(int n1);
+ 163	void reportAssistContextExtras(android.os.IBinder p1, android.os.Bundle p2);
+ 164	java.lang.String getLaunchedFromPackage(android.os.IBinder p1);
+ 165	void killUid(int n1, java.lang.String s2);
+ 166	void setUserIsMonkey(boolean p1);
+ 167	void hang(android.os.IBinder p1, boolean p2);
+ 168	int createStack(int n1, int n2, int n3, float p4);
+ 169	void moveTaskToStack(int n1, int n2, boolean p3);
+ 170	void resizeStackBox(int n1, float p2);
+ 171	java.util.List getStackBoxes();
+ 172	void setFocusedStack(int n1);
+ 173	android.app.ActivityManager.StackBoxInfo getStackBoxInfo(int n1);
+ 174	boolean convertFromTranslucent(android.os.IBinder p1);
+ 175	boolean convertToTranslucent(android.os.IBinder p1);
+ 176	void notifyActivityDrawn(android.os.IBinder p1);
+ 177	void reportActivityFullyDrawn(android.os.IBinder p1);
+ 178	void restart();
+ 179	void performIdleMaintenance();
+ 180	void takePersistableUriPermission(android.net.Uri p1, int n2);
+ 181	void releasePersistableUriPermission(android.net.Uri p1, int n2);
+ 182	android.content.pm.ParceledListSlice getPersistedUriPermissions(java.lang.String s1, boolean p2);
+ 183	void appNotRespondingViaProvider(android.os.IBinder p1);
+
+
+Class: android.app.IAlarmManager
+
+   1	void set(int n1, long n2, long n3, long n4, android.app.PendingIntent p5, android.os.WorkSource p6);
+   2	void setTime(long n1);
+   3	void setTimeZone(java.lang.String s1);
+   4	void remove(android.app.PendingIntent p1);
+
+
+Class: com.android.internal.app.IAppOpsService
+
+   1	int checkOperation(int n1, int n2, java.lang.String s3);
+   2	int noteOperation(int n1, int n2, java.lang.String s3);
+   3	int startOperation(android.os.IBinder p1, int n2, int n3, java.lang.String s4);
+   4	void finishOperation(android.os.IBinder p1, int n2, int n3, java.lang.String s4);
+   5	void startWatchingMode(int n1, java.lang.String s2, com.android.internal.app.IAppOpsCallback p3);
+   6	void stopWatchingMode(com.android.internal.app.IAppOpsCallback p1);
+   7	android.os.IBinder getToken(android.os.IBinder p1);
+   8	int checkPackage(int n1, java.lang.String s2);
+   9	java.util.List getPackagesForOps(int[] p1);
+  10	java.util.List getOpsForPackage(int n1, java.lang.String s2, int[] p3);
+  11	void setMode(int n1, int n2, java.lang.String s3, int n4);
+  12	void resetAllModes();
+
+
+Class: com.android.internal.appwidget.IAppWidgetService
+
+   1	int[] startListening(com.android.internal.appwidget.IAppWidgetHost p1, java.lang.String s2, int n3, java.util.List p4, int n5);
+   2	void stopListening(int n1, int n2);
+   3	int allocateAppWidgetId(java.lang.String s1, int n2, int n3);
+   4	void deleteAppWidgetId(int n1, int n2);
+   5	void deleteHost(int n1, int n2);
+   6	void deleteAllHosts(int n1);
+   7	android.widget.RemoteViews getAppWidgetViews(int n1, int n2);
+   8	int[] getAppWidgetIdsForHost(int n1, int n2);
+   9	void updateAppWidgetIds(int[] p1, android.widget.RemoteViews p2, int n3);
+  10	void updateAppWidgetOptions(int n1, android.os.Bundle p2, int n3);
+  11	android.os.Bundle getAppWidgetOptions(int n1, int n2);
+  12	void partiallyUpdateAppWidgetIds(int[] p1, android.widget.RemoteViews p2, int n3);
+  13	void updateAppWidgetProvider(android.content.ComponentName p1, android.widget.RemoteViews p2, int n3);
+  14	void notifyAppWidgetViewDataChanged(int[] p1, int n2, int n3);
+  15	java.util.List getInstalledProviders(int n1, int n2);
+  16	android.appwidget.AppWidgetProviderInfo getAppWidgetInfo(int n1, int n2);
+  17	boolean hasBindAppWidgetPermission(java.lang.String s1, int n2);
+  18	void setBindAppWidgetPermission(java.lang.String s1, boolean p2, int n3);
+  19	void bindAppWidgetId(int n1, android.content.ComponentName p2, android.os.Bundle p3, int n4);
+  20	boolean bindAppWidgetIdIfAllowed(java.lang.String s1, int n2, android.content.ComponentName p3, android.os.Bundle p4, int n5);
+  21	void bindRemoteViewsService(int n1, android.content.Intent p2, android.os.IBinder p3, int n4);
+  22	void unbindRemoteViewsService(int n1, android.content.Intent p2, int n3);
+  23	int[] getAppWidgetIds(android.content.ComponentName p1, int n2);
+
+
+Class: android.view.IAssetAtlas
+
+   1	boolean isCompatible(int n1);
+   2	android.view.GraphicBuffer getBuffer();
+   3	int[] getMap();
+
+
+Class: android.media.IAudioService
+
+   1	void adjustVolume(int n1, int n2, java.lang.String s3);
+   2	boolean isLocalOrRemoteMusicActive();
+   3	void adjustLocalOrRemoteStreamVolume(int n1, int n2, java.lang.String s3);
+   4	void adjustSuggestedStreamVolume(int n1, int n2, int n3, java.lang.String s4);
+   5	void adjustStreamVolume(int n1, int n2, int n3, java.lang.String s4);
+   6	void adjustMasterVolume(int n1, int n2, java.lang.String s3);
+   7	void setStreamVolume(int n1, int n2, int n3, java.lang.String s4);
+   8	void setRemoteStreamVolume(int n1);
+   9	void setMasterVolume(int n1, int n2, java.lang.String s3);
+  10	void setStreamSolo(int n1, boolean p2, android.os.IBinder p3);
+  11	void setStreamMute(int n1, boolean p2, android.os.IBinder p3);
+  12	boolean isStreamMute(int n1);
+  13	void setMasterMute(boolean p1, int n2, android.os.IBinder p3);
+  14	boolean isMasterMute();
+  15	int getStreamVolume(int n1);
+  16	int getMasterVolume();
+  17	int getStreamMaxVolume(int n1);
+  18	int getMasterMaxVolume();
+  19	int getLastAudibleStreamVolume(int n1);
+  20	int getLastAudibleMasterVolume();
+  21	void setRingerMode(int n1);
+  22	int getRingerMode();
+  23	void setVibrateSetting(int n1, int n2);
+  24	int getVibrateSetting(int n1);
+  25	boolean shouldVibrate(int n1);
+  26	void setMode(int n1, android.os.IBinder p2);
+  27	int getMode();
+  28	void playSoundEffect(int n1);
+  29	void playSoundEffectVolume(int n1, float p2);
+  30	boolean loadSoundEffects();
+  31	void unloadSoundEffects();
+  32	void reloadAudioSettings();
+  33	void avrcpSupportsAbsoluteVolume(java.lang.String s1, boolean p2);
+  34	void setSpeakerphoneOn(boolean p1);
+  35	boolean isSpeakerphoneOn();
+  36	void setBluetoothScoOn(boolean p1);
+  37	boolean isBluetoothScoOn();
+  38	void setBluetoothA2dpOn(boolean p1);
+  39	boolean isBluetoothA2dpOn();
+  40	int requestAudioFocus(int n1, int n2, android.os.IBinder p3, android.media.IAudioFocusDispatcher p4, java.lang.String s5, java.lang.String s6);
+  41	int abandonAudioFocus(android.media.IAudioFocusDispatcher p1, java.lang.String s2);
+  42	void unregisterAudioFocusClient(java.lang.String s1);
+  43	int getCurrentAudioFocus();
+  44	void dispatchMediaKeyEvent(android.view.KeyEvent p1);
+  45	void dispatchMediaKeyEventUnderWakelock(android.view.KeyEvent p1);
+  46	void registerMediaButtonIntent(android.app.PendingIntent p1, android.content.ComponentName p2, android.os.IBinder p3);
+  47	void unregisterMediaButtonIntent(android.app.PendingIntent p1);
+  48	void registerMediaButtonEventReceiverForCalls(android.content.ComponentName p1);
+  49	void unregisterMediaButtonEventReceiverForCalls();
+  50	boolean registerRemoteControlDisplay(android.media.IRemoteControlDisplay p1, int n2, int n3);
+  51	boolean registerRemoteController(android.media.IRemoteControlDisplay p1, int n2, int n3, android.content.ComponentName p4);
+  52	void unregisterRemoteControlDisplay(android.media.IRemoteControlDisplay p1);
+  53	void remoteControlDisplayUsesBitmapSize(android.media.IRemoteControlDisplay p1, int n2, int n3);
+  54	void remoteControlDisplayWantsPlaybackPositionSync(android.media.IRemoteControlDisplay p1, boolean p2);
+  55	void setRemoteControlClientPlaybackPosition(int n1, long n2);
+  56	void updateRemoteControlClientMetadata(int n1, int n2, android.media.Rating p3);
+  57	int registerRemoteControlClient(android.app.PendingIntent p1, android.media.IRemoteControlClient p2, java.lang.String s3);
+  58	void unregisterRemoteControlClient(android.app.PendingIntent p1, android.media.IRemoteControlClient p2);
+  59	void setPlaybackInfoForRcc(int n1, int n2, int n3);
+  60	void setPlaybackStateForRcc(int n1, int n2, long n3, float p4);
+  61	int getRemoteStreamMaxVolume();
+  62	int getRemoteStreamVolume();
+  63	void registerRemoteVolumeObserverForRcc(int n1, android.media.IRemoteVolumeObserver p2);
+  64	void startBluetoothSco(android.os.IBinder p1, int n2);
+  65	void stopBluetoothSco(android.os.IBinder p1);
+  66	void forceVolumeControlStream(int n1, android.os.IBinder p2);
+  67	void setRingtonePlayer(android.media.IRingtonePlayer p1);
+  68	android.media.IRingtonePlayer getRingtonePlayer();
+  69	int getMasterStreamType();
+  70	void setWiredDeviceConnectionState(int n1, int n2, java.lang.String s3);
+  71	int setBluetoothA2dpDeviceConnectionState(android.bluetooth.BluetoothDevice p1, int n2);
+  72	android.media.AudioRoutesInfo startWatchingRoutes(android.media.IAudioRoutesObserver p1);
+  73	boolean isCameraSoundForced();
+
+
+Class: android.app.backup.IBackupManager
+
+   1	void dataChanged(java.lang.String s1);
+   2	void clearBackupData(java.lang.String s1);
+   3	void agentConnected(java.lang.String s1, android.os.IBinder p2);
+   4	void agentDisconnected(java.lang.String s1);
+   5	void restoreAtInstall(java.lang.String s1, int n2);
+   6	void setBackupEnabled(boolean p1);
+   7	void setAutoRestore(boolean p1);
+   8	void setBackupProvisioned(boolean p1);
+   9	boolean isBackupEnabled();
+  10	boolean setBackupPassword(java.lang.String s1, java.lang.String s2);
+  11	boolean hasBackupPassword();
+  12	void backupNow();
+  13	void fullBackup(android.os.ParcelFileDescriptor p1, boolean p2, boolean p3, boolean p4, boolean p5, boolean p6, java.lang.String[] p7);
+  14	void fullRestore(android.os.ParcelFileDescriptor p1);
+  15	void acknowledgeFullBackupOrRestore(int n1, boolean p2, java.lang.String s3, java.lang.String s4, android.app.backup.IFullBackupRestoreObserver p5);
+  16	java.lang.String getCurrentTransport();
+  17	java.lang.String[] listAllTransports();
+  18	java.lang.String selectBackupTransport(java.lang.String s1);
+  19	android.content.Intent getConfigurationIntent(java.lang.String s1);
+  20	java.lang.String getDestinationString(java.lang.String s1);
+  21	android.app.backup.IRestoreSession beginRestoreSession(java.lang.String s1, java.lang.String s2);
+  22	void opComplete(int n1);
+
+
+Class: android.os.IBatteryPropertiesRegistrar
+
+   1	void registerListener(android.os.IBatteryPropertiesListener p1);
+   2	void unregisterListener(android.os.IBatteryPropertiesListener p1);
+
+
+Class: com.android.internal.app.IBatteryStats
+
+   1	byte[] getStatistics();
+   2	void noteStartWakelock(int n1, int n2, java.lang.String s3, int n4);
+   3	void noteStopWakelock(int n1, int n2, java.lang.String s3, int n4);
+   4	void noteStartSensor(int n1, int n2);
+   5	void noteStopSensor(int n1, int n2);
+   6	void noteStartWakelockFromSource(android.os.WorkSource p1, int n2, java.lang.String s3, int n4);
+   7	void noteStopWakelockFromSource(android.os.WorkSource p1, int n2, java.lang.String s3, int n4);
+   8	void noteVibratorOn(int n1, long n2);
+   9	void noteVibratorOff(int n1);
+  10	void noteStartGps(int n1);
+  11	void noteStopGps(int n1);
+  12	void noteScreenOn();
+  13	void noteScreenBrightness(int n1);
+  14	void noteScreenOff();
+  15	void noteInputEvent();
+  16	void noteUserActivity(int n1, int n2);
+  17	void notePhoneOn();
+  18	void notePhoneOff();
+  19	void notePhoneSignalStrength(android.telephony.SignalStrength p1);
+  20	void notePhoneDataConnectionState(int n1, boolean p2);
+  21	void notePhoneState(int n1);
+  22	void noteWifiOn();
+  23	void noteWifiOff();
+  24	void noteWifiRunning(android.os.WorkSource p1);
+  25	void noteWifiRunningChanged(android.os.WorkSource p1, android.os.WorkSource p2);
+  26	void noteWifiStopped(android.os.WorkSource p1);
+  27	void noteBluetoothOn();
+  28	void noteBluetoothOff();
+  29	void noteFullWifiLockAcquired(int n1);
+  30	void noteFullWifiLockReleased(int n1);
+  31	void noteWifiScanStarted(int n1);
+  32	void noteWifiScanStopped(int n1);
+  33	void noteWifiMulticastEnabled(int n1);
+  34	void noteWifiMulticastDisabled(int n1);
+  35	void noteFullWifiLockAcquiredFromSource(android.os.WorkSource p1);
+  36	void noteFullWifiLockReleasedFromSource(android.os.WorkSource p1);
+  37	void noteWifiScanStartedFromSource(android.os.WorkSource p1);
+  38	void noteWifiScanStoppedFromSource(android.os.WorkSource p1);
+  39	void noteWifiMulticastEnabledFromSource(android.os.WorkSource p1);
+  40	void noteWifiMulticastDisabledFromSource(android.os.WorkSource p1);
+  41	void noteNetworkInterfaceType(java.lang.String s1, int n2);
+  42	void noteNetworkStatsEnabled();
+  43	void setBatteryState(int n1, int n2, int n3, int n4, int n5, int n6);
+  44	long getAwakeTimeBattery();
+  45	long getAwakeTimePlugged();
+
+
+Class: android.content.IClipboard
+
+   1	void setPrimaryClip(android.content.ClipData p1, java.lang.String s2);
+   2	android.content.ClipData getPrimaryClip(java.lang.String s1);
+   3	android.content.ClipDescription getPrimaryClipDescription(java.lang.String s1);
+   4	boolean hasPrimaryClip(java.lang.String s1);
+   5	void addPrimaryClipChangedListener(android.content.IOnPrimaryClipChangedListener p1, java.lang.String s2);
+   6	void removePrimaryClipChangedListener(android.content.IOnPrimaryClipChangedListener p1);
+   7	boolean hasClipboardText(java.lang.String s1);
+
+
+Class: android.net.IConnectivityManager
+
+   1	void markSocketAsUser(android.os.ParcelFileDescriptor p1, int n2);
+   2	void setNetworkPreference(int n1);
+   3	int getNetworkPreference();
+   4	android.net.NetworkInfo getActiveNetworkInfo();
+   5	android.net.NetworkInfo getActiveNetworkInfoForUid(int n1);
+   6	android.net.NetworkInfo getNetworkInfo(int n1);
+   7	android.net.NetworkInfo[] getAllNetworkInfo();
+   8	android.net.NetworkInfo getProvisioningOrActiveNetworkInfo();
+   9	boolean isNetworkSupported(int n1);
+  10	android.net.LinkProperties getActiveLinkProperties();
+  11	android.net.LinkProperties getLinkProperties(int n1);
+  12	android.net.NetworkState[] getAllNetworkState();
+  13	android.net.NetworkQuotaInfo getActiveNetworkQuotaInfo();
+  14	boolean isActiveNetworkMetered();
+  15	boolean setRadios(boolean p1);
+  16	boolean setRadio(int n1, boolean p2);
+  17	int startUsingNetworkFeature(int n1, java.lang.String s2, android.os.IBinder p3);
+  18	int stopUsingNetworkFeature(int n1, java.lang.String s2);
+  19	boolean requestRouteToHost(int n1, int n2);
+  20	boolean requestRouteToHostAddress(int n1, byte[] p2);
+  21	boolean getMobileDataEnabled();
+  22	void setMobileDataEnabled(boolean p1);
+  23	void setPolicyDataEnable(int n1, boolean p2);
+  24	int tether(java.lang.String s1);
+  25	int untether(java.lang.String s1);
+  26	int getLastTetherError(java.lang.String s1);
+  27	boolean isTetheringSupported();
+  28	java.lang.String[] getTetherableIfaces();
+  29	java.lang.String[] getTetheredIfaces();
+  30	java.lang.String[] getTetheringErroredIfaces();
+  31	java.lang.String[] getTetherableUsbRegexs();
+  32	java.lang.String[] getTetherableWifiRegexs();
+  33	java.lang.String[] getTetherableBluetoothRegexs();
+  34	int setUsbTethering(boolean p1);
+  35	void requestNetworkTransitionWakelock(java.lang.String s1);
+  36	void reportInetCondition(int n1, int n2);
+  37	android.net.ProxyProperties getGlobalProxy();
+  38	void setGlobalProxy(android.net.ProxyProperties p1);
+  39	android.net.ProxyProperties getProxy();
+  40	void setDataDependency(int n1, boolean p2);
+  41	boolean protectVpn(android.os.ParcelFileDescriptor p1);
+  42	boolean prepareVpn(java.lang.String s1, java.lang.String s2);
+  43	android.os.ParcelFileDescriptor establishVpn(com.android.internal.net.VpnConfig p1);
+  44	com.android.internal.net.VpnConfig getVpnConfig();
+  45	void startLegacyVpn(com.android.internal.net.VpnProfile p1);
+  46	com.android.internal.net.LegacyVpnInfo getLegacyVpnInfo();
+  47	boolean updateLockdownVpn();
+  48	void captivePortalCheckComplete(android.net.NetworkInfo p1);
+  49	void captivePortalCheckCompleted(android.net.NetworkInfo p1, boolean p2);
+  50	void supplyMessenger(int n1, android.os.Messenger p2);
+  51	int findConnectionTypeForIface(java.lang.String s1);
+  52	int checkMobileProvisioning(int n1);
+  53	java.lang.String getMobileProvisioningUrl();
+  54	java.lang.String getMobileRedirectedProvisioningUrl();
+  55	android.net.LinkQualityInfo getLinkQualityInfo(int n1);
+  56	android.net.LinkQualityInfo getActiveLinkQualityInfo();
+  57	android.net.LinkQualityInfo[] getAllLinkQualityInfo();
+  58	void setProvisioningNotificationVisible(boolean p1, int n2, java.lang.String s3, java.lang.String s4);
+  59	void setAirplaneMode(boolean p1);
+
+
+Class: android.hardware.IConsumerIrService
+
+   1	boolean hasIrEmitter();
+   2	void transmit(java.lang.String s1, int n2, int[] p3);
+   3	int[] getCarrierFrequencies();
+
+
+Class: android.content.IContentService
+
+   1	void unregisterContentObserver(android.database.IContentObserver p1);
+   2	void registerContentObserver(android.net.Uri p1, boolean p2, android.database.IContentObserver p3, int n4);
+   3	void notifyChange(android.net.Uri p1, android.database.IContentObserver p2, boolean p3, boolean p4, int n5);
+   4	void requestSync(android.accounts.Account p1, java.lang.String s2, android.os.Bundle p3);
+   5	void sync(android.content.SyncRequest p1);
+   6	void cancelSync(android.accounts.Account p1, java.lang.String s2);
+   7	boolean getSyncAutomatically(android.accounts.Account p1, java.lang.String s2);
+   8	void setSyncAutomatically(android.accounts.Account p1, java.lang.String s2, boolean p3);
+   9	java.util.List getPeriodicSyncs(android.accounts.Account p1, java.lang.String s2);
+  10	void addPeriodicSync(android.accounts.Account p1, java.lang.String s2, android.os.Bundle p3, long n4);
+  11	void removePeriodicSync(android.accounts.Account p1, java.lang.String s2, android.os.Bundle p3);
+  12	int getIsSyncable(android.accounts.Account p1, java.lang.String s2);
+  13	void setIsSyncable(android.accounts.Account p1, java.lang.String s2, int n3);
+  14	void setMasterSyncAutomatically(boolean p1);
+  15	boolean getMasterSyncAutomatically();
+  16	boolean isSyncActive(android.accounts.Account p1, java.lang.String s2);
+  17	java.util.List getCurrentSyncs();
+  18	android.content.SyncAdapterType[] getSyncAdapterTypes();
+  19	android.content.SyncStatusInfo getSyncStatus(android.accounts.Account p1, java.lang.String s2);
+  20	boolean isSyncPending(android.accounts.Account p1, java.lang.String s2);
+  21	void addStatusChangeListener(int n1, android.content.ISyncStatusObserver p2);
+  22	void removeStatusChangeListener(android.content.ISyncStatusObserver p1);
+
+
+Class: android.location.ICountryDetector
+
+   1	android.location.Country detectCountry();
+   2	void addCountryListener(android.location.ICountryListener p1);
+   3	void removeCountryListener(android.location.ICountryListener p1);
+
+
+Class: android.app.admin.IDevicePolicyManager
+
+   1	void setPasswordQuality(android.content.ComponentName p1, int n2, int n3);
+   2	int getPasswordQuality(android.content.ComponentName p1, int n2);
+   3	void setPasswordMinimumLength(android.content.ComponentName p1, int n2, int n3);
+   4	int getPasswordMinimumLength(android.content.ComponentName p1, int n2);
+   5	void setPasswordMinimumUpperCase(android.content.ComponentName p1, int n2, int n3);
+   6	int getPasswordMinimumUpperCase(android.content.ComponentName p1, int n2);
+   7	void setPasswordMinimumLowerCase(android.content.ComponentName p1, int n2, int n3);
+   8	int getPasswordMinimumLowerCase(android.content.ComponentName p1, int n2);
+   9	void setPasswordMinimumLetters(android.content.ComponentName p1, int n2, int n3);
+  10	int getPasswordMinimumLetters(android.content.ComponentName p1, int n2);
+  11	void setPasswordMinimumNumeric(android.content.ComponentName p1, int n2, int n3);
+  12	int getPasswordMinimumNumeric(android.content.ComponentName p1, int n2);
+  13	void setPasswordMinimumSymbols(android.content.ComponentName p1, int n2, int n3);
+  14	int getPasswordMinimumSymbols(android.content.ComponentName p1, int n2);
+  15	void setPasswordMinimumNonLetter(android.content.ComponentName p1, int n2, int n3);
+  16	int getPasswordMinimumNonLetter(android.content.ComponentName p1, int n2);
+  17	void setPasswordHistoryLength(android.content.ComponentName p1, int n2, int n3);
+  18	int getPasswordHistoryLength(android.content.ComponentName p1, int n2);
+  19	void setPasswordExpirationTimeout(android.content.ComponentName p1, long n2, int n3);
+  20	long getPasswordExpirationTimeout(android.content.ComponentName p1, int n2);
+  21	long getPasswordExpiration(android.content.ComponentName p1, int n2);
+  22	boolean isActivePasswordSufficient(int n1);
+  23	int getCurrentFailedPasswordAttempts(int n1);
+  24	void setMaximumFailedPasswordsForWipe(android.content.ComponentName p1, int n2, int n3);
+  25	int getMaximumFailedPasswordsForWipe(android.content.ComponentName p1, int n2);
+  26	boolean resetPassword(java.lang.String s1, int n2, int n3);
+  27	void setMaximumTimeToLock(android.content.ComponentName p1, long n2, int n3);
+  28	long getMaximumTimeToLock(android.content.ComponentName p1, int n2);
+  29	void lockNow();
+  30	void wipeData(int n1, int n2);
+  31	android.content.ComponentName setGlobalProxy(android.content.ComponentName p1, java.lang.String s2, java.lang.String s3, int n4);
+  32	android.content.ComponentName getGlobalProxyAdmin(int n1);
+  33	int setStorageEncryption(android.content.ComponentName p1, boolean p2, int n3);
+  34	boolean getStorageEncryption(android.content.ComponentName p1, int n2);
+  35	int getStorageEncryptionStatus(int n1);
+  36	void setCameraDisabled(android.content.ComponentName p1, boolean p2, int n3);
+  37	boolean getCameraDisabled(android.content.ComponentName p1, int n2);
+  38	void setKeyguardDisabledFeatures(android.content.ComponentName p1, int n2, int n3);
+  39	int getKeyguardDisabledFeatures(android.content.ComponentName p1, int n2);
+  40	void setActiveAdmin(android.content.ComponentName p1, boolean p2, int n3);
+  41	boolean isAdminActive(android.content.ComponentName p1, int n2);
+  42	java.util.List getActiveAdmins(int n1);
+  43	boolean packageHasActiveAdmins(java.lang.String s1, int n2);
+  44	void getRemoveWarning(android.content.ComponentName p1, android.os.RemoteCallback p2, int n3);
+  45	void removeActiveAdmin(android.content.ComponentName p1, int n2);
+  46	boolean hasGrantedPolicy(android.content.ComponentName p1, int n2, int n3);
+  47	void setActivePasswordState(int n1, int n2, int n3, int n4, int n5, int n6, int n7, int n8, int n9);
+  48	void reportFailedPasswordAttempt(int n1);
+  49	void reportSuccessfulPasswordAttempt(int n1);
+  50	boolean setDeviceOwner(java.lang.String s1, java.lang.String s2);
+  51	boolean isDeviceOwner(java.lang.String s1);
+  52	java.lang.String getDeviceOwner();
+  53	java.lang.String getDeviceOwnerName();
+  54	boolean installCaCert(byte[] p1);
+  55	void uninstallCaCert(byte[] p1);
+
+
+Class: android.hardware.display.IDisplayManager
+
+   1	android.view.DisplayInfo getDisplayInfo(int n1);
+   2	int[] getDisplayIds();
+   3	void registerCallback(android.hardware.display.IDisplayManagerCallback p1);
+   4	void scanWifiDisplays();
+   5	void connectWifiDisplay(java.lang.String s1);
+   6	void disconnectWifiDisplay();
+   7	void renameWifiDisplay(java.lang.String s1, java.lang.String s2);
+   8	void forgetWifiDisplay(java.lang.String s1);
+   9	android.hardware.display.WifiDisplayStatus getWifiDisplayStatus();
+  10	int createVirtualDisplay(android.os.IBinder p1, java.lang.String s2, java.lang.String s3, int n4, int n5, int n6, android.view.Surface p7, int n8);
+  11	void releaseVirtualDisplay(android.os.IBinder p1);
+  12	void pauseWifiDisplay();
+  13	void resumeWifiDisplay();
+
+
+Class: android.service.dreams.IDreamManager
+
+   1	void dream();
+   2	void awaken();
+   3	void setDreamComponents(android.content.ComponentName[] p1);
+   4	android.content.ComponentName[] getDreamComponents();
+   5	android.content.ComponentName getDefaultDreamComponent();
+   6	void testDream(android.content.ComponentName p1);
+   7	boolean isDreaming();
+   8	void finishSelf(android.os.IBinder p1);
+
+
+Class: com.android.internal.os.IDropBoxManagerService
+
+   1	void add(android.os.DropBoxManager.Entry p1);
+   2	boolean isTagEnabled(java.lang.String s1);
+   3	android.os.DropBoxManager.Entry getNextEntry(java.lang.String s1, long n2);
+
+
+Class: android.os.IHardwareService
+
+   1	boolean getFlashlightEnabled();
+   2	void setFlashlightEnabled(boolean p1);
+
+
+Class: android.hardware.input.IInputManager
+
+   1	android.view.InputDevice getInputDevice(int n1);
+   2	int[] getInputDeviceIds();
+   3	boolean hasKeys(int n1, int n2, int[] p3, boolean[] p4);
+   4	void tryPointerSpeed(int n1);
+   5	boolean injectInputEvent(android.view.InputEvent p1, int n2);
+   6	android.hardware.input.KeyboardLayout[] getKeyboardLayouts();
+   7	android.hardware.input.KeyboardLayout getKeyboardLayout(java.lang.String s1);
+   8	java.lang.String getCurrentKeyboardLayoutForInputDevice(java.lang.String s1);
+   9	void setCurrentKeyboardLayoutForInputDevice(java.lang.String s1, java.lang.String s2);
+  10	java.lang.String[] getKeyboardLayoutsForInputDevice(java.lang.String s1);
+  11	void addKeyboardLayoutForInputDevice(java.lang.String s1, java.lang.String s2);
+  12	void removeKeyboardLayoutForInputDevice(java.lang.String s1, java.lang.String s2);
+  13	void registerInputDevicesChangedListener(android.hardware.input.IInputDevicesChangedListener p1);
+  14	void vibrate(int n1, long[] p2, int n3, android.os.IBinder p4);
+  15	void cancelVibrate(int n1, android.os.IBinder p2);
+
+
+Class: com.android.internal.view.IInputMethodManager
+
+   1	java.util.List getInputMethodList();
+   2	java.util.List getEnabledInputMethodList();
+   3	java.util.List getEnabledInputMethodSubtypeList(java.lang.String s1, boolean p2);
+   4	android.view.inputmethod.InputMethodSubtype getLastInputMethodSubtype();
+   5	java.util.List getShortcutInputMethodsAndSubtypes();
+   6	void addClient(com.android.internal.view.IInputMethodClient p1, com.android.internal.view.IInputContext p2, int n3, int n4);
+   7	void removeClient(com.android.internal.view.IInputMethodClient p1);
+   8	com.android.internal.view.InputBindResult startInput(com.android.internal.view.IInputMethodClient p1, com.android.internal.view.IInputContext p2, android.view.inputmethod.EditorInfo p3, int n4);
+   9	void finishInput(com.android.internal.view.IInputMethodClient p1);
+  10	boolean showSoftInput(com.android.internal.view.IInputMethodClient p1, int n2, android.os.ResultReceiver p3);
+  11	boolean hideSoftInput(com.android.internal.view.IInputMethodClient p1, int n2, android.os.ResultReceiver p3);
+  12	com.android.internal.view.InputBindResult windowGainedFocus(com.android.internal.view.IInputMethodClient p1, android.os.IBinder p2, int n3, int n4, int n5, android.view.inputmethod.EditorInfo p6, com.android.internal.view.IInputContext p7);
+  13	void showInputMethodPickerFromClient(com.android.internal.view.IInputMethodClient p1);
+  14	void showInputMethodAndSubtypeEnablerFromClient(com.android.internal.view.IInputMethodClient p1, java.lang.String s2);
+  15	void setInputMethod(android.os.IBinder p1, java.lang.String s2);
+  16	void setInputMethodAndSubtype(android.os.IBinder p1, java.lang.String s2, android.view.inputmethod.InputMethodSubtype p3);
+  17	void hideMySoftInput(android.os.IBinder p1, int n2);
+  18	void showMySoftInput(android.os.IBinder p1, int n2);
+  19	void updateStatusIcon(android.os.IBinder p1, java.lang.String s2, int n3);
+  20	void setImeWindowStatus(android.os.IBinder p1, int n2, int n3);
+  21	void registerSuggestionSpansForNotification(android.text.style.SuggestionSpan[] p1);
+  22	boolean notifySuggestionPicked(android.text.style.SuggestionSpan p1, java.lang.String s2, int n3);
+  23	android.view.inputmethod.InputMethodSubtype getCurrentInputMethodSubtype();
+  24	boolean setCurrentInputMethodSubtype(android.view.inputmethod.InputMethodSubtype p1);
+  25	boolean switchToLastInputMethod(android.os.IBinder p1);
+  26	boolean switchToNextInputMethod(android.os.IBinder p1, boolean p2);
+  27	boolean shouldOfferSwitchingToNextInputMethod(android.os.IBinder p1);
+  28	boolean setInputMethodEnabled(java.lang.String s1, boolean p2);
+  29	void setAdditionalInputMethodSubtypes(java.lang.String s1, android.view.inputmethod.InputMethodSubtype[] p2);
+
+
+Class: com.android.internal.telephony.IPhoneSubInfo
+
+   1	java.lang.String getDeviceId();
+   2	java.lang.String getDeviceSvn();
+   3	java.lang.String getSubscriberId();
+   4	java.lang.String getGroupIdLevel1();
+   5	java.lang.String getIccSerialNumber();
+   6	java.lang.String getLine1Number();
+   7	java.lang.String getLine1AlphaTag();
+   8	java.lang.String getMsisdn();
+   9	java.lang.String getVoiceMailNumber();
+  10	java.lang.String getCompleteVoiceMailNumber();
+  11	java.lang.String getVoiceMailAlphaTag();
+  12	java.lang.String getIsimImpi();
+  13	java.lang.String getIsimDomain();
+  14	java.lang.String[] getIsimImpu();
+
+
+Class: com.android.internal.telephony.ISms
+
+   1	java.util.List getAllMessagesFromIccEf(java.lang.String s1);
+   2	boolean updateMessageOnIccEf(java.lang.String s1, int n2, int n3, byte[] p4);
+   3	boolean copyMessageToIccEf(java.lang.String s1, int n2, byte[] p3, byte[] p4);
+   4	void sendData(java.lang.String s1, java.lang.String s2, java.lang.String s3, int n4, byte[] p5, android.app.PendingIntent p6, android.app.PendingIntent p7);
+   5	void sendText(java.lang.String s1, java.lang.String s2, java.lang.String s3, java.lang.String s4, android.app.PendingIntent p5, android.app.PendingIntent p6);
+   6	void sendMultipartText(java.lang.String s1, java.lang.String s2, java.lang.String s3, java.util.List p4, java.util.List p5, java.util.List p6);
+   7	boolean enableCellBroadcast(int n1);
+   8	boolean disableCellBroadcast(int n1);
+   9	boolean enableCellBroadcastRange(int n1, int n2);
+  10	boolean disableCellBroadcastRange(int n1, int n2);
+  11	int getPremiumSmsPermission(java.lang.String s1);
+  12	void setPremiumSmsPermission(java.lang.String s1, int n2);
+  13	boolean isImsSmsSupported();
+  14	java.lang.String getImsSmsFormat();
+
+
+Class: android.location.ILocationManager
+
+   1	void requestLocationUpdates(android.location.LocationRequest p1, android.location.ILocationListener p2, android.app.PendingIntent p3, java.lang.String s4);
+   2	void removeUpdates(android.location.ILocationListener p1, android.app.PendingIntent p2, java.lang.String s3);
+   3	void requestGeofence(android.location.LocationRequest p1, android.location.Geofence p2, android.app.PendingIntent p3, java.lang.String s4);
+   4	void removeGeofence(android.location.Geofence p1, android.app.PendingIntent p2, java.lang.String s3);
+   5	android.location.Location getLastLocation(android.location.LocationRequest p1, java.lang.String s2);
+   6	boolean addGpsStatusListener(android.location.IGpsStatusListener p1, java.lang.String s2);
+   7	void removeGpsStatusListener(android.location.IGpsStatusListener p1);
+   8	boolean geocoderIsPresent();
+   9	java.lang.String getFromLocation(double p1, double p2, int n3, android.location.GeocoderParams p4, java.util.List p5);
+  10	java.lang.String getFromLocationName(java.lang.String s1, double p2, double p3, double p4, double p5, int n6, android.location.GeocoderParams p7, java.util.List p8);
+  11	boolean sendNiResponse(int n1, int n2);
+  12	java.util.List getAllProviders();
+  13	java.util.List getProviders(android.location.Criteria p1, boolean p2);
+  14	java.lang.String getBestProvider(android.location.Criteria p1, boolean p2);
+  15	boolean providerMeetsCriteria(java.lang.String s1, android.location.Criteria p2);
+  16	com.android.internal.location.ProviderProperties getProviderProperties(java.lang.String s1);
+  17	boolean isProviderEnabled(java.lang.String s1);
+  18	void addTestProvider(java.lang.String s1, com.android.internal.location.ProviderProperties p2);
+  19	void removeTestProvider(java.lang.String s1);
+  20	void setTestProviderLocation(java.lang.String s1, android.location.Location p2);
+  21	void clearTestProviderLocation(java.lang.String s1);
+  22	void setTestProviderEnabled(java.lang.String s1, boolean p2);
+  23	void clearTestProviderEnabled(java.lang.String s1);
+  24	void setTestProviderStatus(java.lang.String s1, int n2, android.os.Bundle p3, long n4);
+  25	void clearTestProviderStatus(java.lang.String s1);
+  26	boolean sendExtraCommand(java.lang.String s1, java.lang.String s2, android.os.Bundle p3);
+  27	void reportLocation(android.location.Location p1, boolean p2);
+  28	void locationCallbackFinished(android.location.ILocationListener p1);
+
+
+Class: com.android.internal.widget.ILockSettings
+
+   1	void setBoolean(java.lang.String s1, boolean p2, int n3);
+   2	void setLong(java.lang.String s1, long n2, int n3);
+   3	void setString(java.lang.String s1, java.lang.String s2, int n3);
+   4	boolean getBoolean(java.lang.String s1, boolean p2, int n3);
+   5	long getLong(java.lang.String s1, long n2, int n3);
+   6	java.lang.String getString(java.lang.String s1, java.lang.String s2, int n3);
+   7	void setLockPattern(java.lang.String s1, int n2);
+   8	boolean checkPattern(java.lang.String s1, int n2);
+   9	void setLockPassword(java.lang.String s1, int n2);
+  10	boolean checkPassword(java.lang.String s1, int n2);
+  11	boolean havePattern(int n1);
+  12	boolean havePassword(int n1);
+  13	void removeUser(int n1);
+
+
+Class: android.hardware.ICameraService
+
+   1	int getNumberOfCameras();
+   2	int getCameraInfo(int n1, android.hardware.CameraInfo p2);
+   3	int connect(android.hardware.ICameraClient p1, int n2, java.lang.String s3, int n4, android.hardware.camera2.utils.BinderHolder p5);
+   4	int connectPro(android.hardware.IProCameraCallbacks p1, int n2, java.lang.String s3, int n4, android.hardware.camera2.utils.BinderHolder p5);
+   5	int connectDevice(android.hardware.camera2.ICameraDeviceCallbacks p1, int n2, java.lang.String s3, int n4, android.hardware.camera2.utils.BinderHolder p5);
+   6	int addListener(android.hardware.ICameraServiceListener p1);
+   7	int removeListener(android.hardware.ICameraServiceListener p1);
+   8	int getCameraCharacteristics(int n1, android.hardware.camera2.impl.CameraMetadataNative p2);
+
+
+Class: android.os.storage.IMountService
+
+   1	void registerListener(android.os.storage.IMountServiceListener p1);
+   2	void unregisterListener(android.os.storage.IMountServiceListener p1);
+   3	boolean isUsbMassStorageConnected();
+   4	void setUsbMassStorageEnabled(boolean p1);
+   5	boolean isUsbMassStorageEnabled();
+   6	int mountVolume(java.lang.String s1);
+   7	void unmountVolume(java.lang.String s1, boolean p2, boolean p3);
+   8	int formatVolume(java.lang.String s1);
+   9	int[] getStorageUsers(java.lang.String s1);
+  10	java.lang.String getVolumeState(java.lang.String s1);
+  11	int createSecureContainer(java.lang.String s1, int n2, java.lang.String s3, java.lang.String s4, int n5, boolean p6);
+  12	int finalizeSecureContainer(java.lang.String s1);
+  13	int destroySecureContainer(java.lang.String s1, boolean p2);
+  14	int mountSecureContainer(java.lang.String s1, java.lang.String s2, int n3);
+  15	int unmountSecureContainer(java.lang.String s1, boolean p2);
+  16	boolean isSecureContainerMounted(java.lang.String s1);
+  17	int renameSecureContainer(java.lang.String s1, java.lang.String s2);
+  18	java.lang.String getSecureContainerPath(java.lang.String s1);
+  19	java.lang.String[] getSecureContainerList();
+  20	void shutdown(android.os.storage.IMountShutdownObserver p1);
+  21	void finishMediaUpdate();
+  22	void mountObb(java.lang.String s1, java.lang.String s2, java.lang.String s3, android.os.storage.IObbActionListener p4, int n5);
+  23	void unmountObb(java.lang.String s1, boolean p2, android.os.storage.IObbActionListener p3, int n4);
+  24	boolean isObbMounted(java.lang.String s1);
+  25	java.lang.String getMountedObbPath(java.lang.String s1);
+  26	boolean isExternalStorageEmulated();
+  27	int decryptStorage(java.lang.String s1);
+  28	int encryptStorage(java.lang.String s1);
+  29	int changeEncryptionPassword(java.lang.String s1);
+  30	android.os.storage.StorageVolume[] getVolumeList();
+  31	java.lang.String getSecureContainerFilesystemPath(java.lang.String s1);
+  32	int getEncryptionState();
+  33	int verifyEncryptionPassword(java.lang.String s1);
+  34	int fixPermissionsSecureContainer(java.lang.String s1, int n2, java.lang.String s3);
+  35	int mkdirs(java.lang.String s1, java.lang.String s2);
+
+
+Class: android.net.INetworkPolicyManager
+
+   1	void setUidPolicy(int n1, int n2);
+   2	int getUidPolicy(int n1);
+   3	int[] getUidsWithPolicy(int n1);
+   4	boolean isUidForeground(int n1);
+   5	void registerListener(android.net.INetworkPolicyListener p1);
+   6	void unregisterListener(android.net.INetworkPolicyListener p1);
+   7	void setNetworkPolicies(android.net.NetworkPolicy[] p1);
+   8	android.net.NetworkPolicy[] getNetworkPolicies();
+   9	void snoozeLimit(android.net.NetworkTemplate p1);
+  10	void setRestrictBackground(boolean p1);
+  11	boolean getRestrictBackground();
+  12	android.net.NetworkQuotaInfo getNetworkQuotaInfo(android.net.NetworkState p1);
+  13	boolean isNetworkMetered(android.net.NetworkState p1);
+
+
+Class: android.net.INetworkStatsService
+
+   1	android.net.INetworkStatsSession openSession();
+   2	long getNetworkTotalBytes(android.net.NetworkTemplate p1, long n2, long n3);
+   3	android.net.NetworkStats getDataLayerSnapshotForUid(int n1);
+   4	java.lang.String[] getMobileIfaces();
+   5	void incrementOperationCount(int n1, int n2, int n3);
+   6	void setUidForeground(int n1, boolean p2);
+   7	void forceUpdate();
+   8	void advisePersistThreshold(long n1);
+
+
+Class: android.os.INetworkManagementService
+
+   1	void registerObserver(android.net.INetworkManagementEventObserver p1);
+   2	void unregisterObserver(android.net.INetworkManagementEventObserver p1);
+   3	java.lang.String[] listInterfaces();
+   4	android.net.InterfaceConfiguration getInterfaceConfig(java.lang.String s1);
+   5	void setInterfaceConfig(java.lang.String s1, android.net.InterfaceConfiguration p2);
+   6	void clearInterfaceAddresses(java.lang.String s1);
+   7	void setInterfaceDown(java.lang.String s1);
+   8	void setInterfaceUp(java.lang.String s1);
+   9	void setInterfaceIpv6PrivacyExtensions(java.lang.String s1, boolean p2);
+  10	void disableIpv6(java.lang.String s1);
+  11	void enableIpv6(java.lang.String s1);
+  12	android.net.RouteInfo[] getRoutes(java.lang.String s1);
+  13	void addRoute(java.lang.String s1, android.net.RouteInfo p2);
+  14	void removeRoute(java.lang.String s1, android.net.RouteInfo p2);
+  15	void addSecondaryRoute(java.lang.String s1, android.net.RouteInfo p2);
+  16	void removeSecondaryRoute(java.lang.String s1, android.net.RouteInfo p2);
+  17	void setMtu(java.lang.String s1, int n2);
+  18	void shutdown();
+  19	boolean getIpForwardingEnabled();
+  20	void setIpForwardingEnabled(boolean p1);
+  21	void startTethering(java.lang.String[] p1);
+  22	void stopTethering();
+  23	boolean isTetheringStarted();
+  24	void tetherInterface(java.lang.String s1);
+  25	void untetherInterface(java.lang.String s1);
+  26	java.lang.String[] listTetheredInterfaces();
+  27	void setDnsForwarders(java.lang.String[] p1);
+  28	java.lang.String[] getDnsForwarders();
+  29	void enableNat(java.lang.String s1, java.lang.String s2);
+  30	void disableNat(java.lang.String s1, java.lang.String s2);
+  31	java.lang.String[] listTtys();
+  32	void attachPppd(java.lang.String s1, java.lang.String s2, java.lang.String s3, java.lang.String s4, java.lang.String s5);
+  33	void detachPppd(java.lang.String s1);
+  34	void wifiFirmwareReload(java.lang.String s1, java.lang.String s2);
+  35	void startAccessPoint(android.net.wifi.WifiConfiguration p1, java.lang.String s2);
+  36	void stopAccessPoint(java.lang.String s1);
+  37	void setAccessPoint(android.net.wifi.WifiConfiguration p1, java.lang.String s2);
+  38	android.net.NetworkStats getNetworkStatsSummaryDev();
+  39	android.net.NetworkStats getNetworkStatsSummaryXt();
+  40	android.net.NetworkStats getNetworkStatsDetail();
+  41	android.net.NetworkStats getNetworkStatsUidDetail(int n1);
+  42	android.net.NetworkStats getNetworkStatsTethering();
+  43	void setInterfaceQuota(java.lang.String s1, long n2);
+  44	void removeInterfaceQuota(java.lang.String s1);
+  45	void setInterfaceAlert(java.lang.String s1, long n2);
+  46	void removeInterfaceAlert(java.lang.String s1);
+  47	void setGlobalAlert(long n1);
+  48	void setUidNetworkRules(int n1, boolean p2);
+  49	boolean isBandwidthControlEnabled();
+  50	void addIdleTimer(java.lang.String s1, int n2, java.lang.String s3);
+  51	void removeIdleTimer(java.lang.String s1);
+  52	void setDefaultInterfaceForDns(java.lang.String s1);
+  53	void setDnsServersForInterface(java.lang.String s1, java.lang.String[] p2, java.lang.String s3);
+  54	void flushDefaultDnsCache();
+  55	void flushInterfaceDnsCache(java.lang.String s1);
+  56	void setFirewallEnabled(boolean p1);
+  57	boolean isFirewallEnabled();
+  58	void setFirewallInterfaceRule(java.lang.String s1, boolean p2);
+  59	void setFirewallEgressSourceRule(java.lang.String s1, boolean p2);
+  60	void setFirewallEgressDestRule(java.lang.String s1, int n2, boolean p3);
+  61	void setFirewallUidRule(int n1, boolean p2);
+  62	void setUidRangeRoute(java.lang.String s1, int n2, int n3);
+  63	void clearUidRangeRoute(java.lang.String s1, int n2, int n3);
+  64	void setMarkedForwarding(java.lang.String s1);
+  65	void clearMarkedForwarding(java.lang.String s1);
+  66	int getMarkForUid(int n1);
+  67	int getMarkForProtect();
+  68	void setMarkedForwardingRoute(java.lang.String s1, android.net.RouteInfo p2);
+  69	void clearMarkedForwardingRoute(java.lang.String s1, android.net.RouteInfo p2);
+  70	void setHostExemption(android.net.LinkAddress p1);
+  71	void clearHostExemption(android.net.LinkAddress p1);
+  72	void setDnsInterfaceForPid(java.lang.String s1, int n2);
+  73	void clearDnsInterfaceForPid(int n1);
+  74	void setDnsInterfaceForUidRange(java.lang.String s1, int n2, int n3);
+  75	void clearDnsInterfaceForUidRange(int n1, int n2);
+  76	void clearDnsInterfaceMaps();
+  77	void startClatd(java.lang.String s1);
+  78	void stopClatd();
+  79	boolean isClatdStarted();
+
+
+Class: android.app.INotificationManager
+
+   1	void cancelAllNotifications(java.lang.String s1, int n2);
+   2	void enqueueToast(java.lang.String s1, android.app.ITransientNotification p2, int n3);
+   3	void cancelToast(java.lang.String s1, android.app.ITransientNotification p2);
+   4	void enqueueNotificationWithTag(java.lang.String s1, java.lang.String s2, java.lang.String s3, int n4, android.app.Notification p5, int[] p6, int n7);
+   5	void cancelNotificationWithTag(java.lang.String s1, java.lang.String s2, int n3, int n4);
+   6	void setNotificationsEnabledForPackage(java.lang.String s1, int n2, boolean p3);
+   7	boolean areNotificationsEnabledForPackage(java.lang.String s1, int n2);
+   8	android.service.notification.StatusBarNotification[] getActiveNotifications(java.lang.String s1);
+   9	android.service.notification.StatusBarNotification[] getHistoricalNotifications(java.lang.String s1, int n2);
+  10	void registerListener(android.service.notification.INotificationListener p1, android.content.ComponentName p2, int n3);
+  11	void unregisterListener(android.service.notification.INotificationListener p1, int n2);
+  12	void cancelNotificationFromListener(android.service.notification.INotificationListener p1, java.lang.String s2, java.lang.String s3, int n4);
+  13	void cancelAllNotificationsFromListener(android.service.notification.INotificationListener p1);
+  14	android.service.notification.StatusBarNotification[] getActiveNotificationsFromListener(android.service.notification.INotificationListener p1);
+
+
+Class: android.content.pm.IPackageManager
+
+   1	android.content.pm.PackageInfo getPackageInfo(java.lang.String s1, int n2, int n3);
+   2	int getPackageUid(java.lang.String s1, int n2);
+   3	int[] getPackageGids(java.lang.String s1);
+   4	java.lang.String[] currentToCanonicalPackageNames(java.lang.String[] p1);
+   5	java.lang.String[] canonicalToCurrentPackageNames(java.lang.String[] p1);
+   6	android.content.pm.PermissionInfo getPermissionInfo(java.lang.String s1, int n2);
+   7	java.util.List queryPermissionsByGroup(java.lang.String s1, int n2);
+   8	android.content.pm.PermissionGroupInfo getPermissionGroupInfo(java.lang.String s1, int n2);
+   9	java.util.List getAllPermissionGroups(int n1);
+  10	android.content.pm.ApplicationInfo getApplicationInfo(java.lang.String s1, int n2, int n3);
+  11	android.content.pm.ActivityInfo getActivityInfo(android.content.ComponentName p1, int n2, int n3);
+  12	android.content.pm.ActivityInfo getReceiverInfo(android.content.ComponentName p1, int n2, int n3);
+  13	android.content.pm.ServiceInfo getServiceInfo(android.content.ComponentName p1, int n2, int n3);
+  14	android.content.pm.ProviderInfo getProviderInfo(android.content.ComponentName p1, int n2, int n3);
+  15	int checkPermission(java.lang.String s1, java.lang.String s2);
+  16	int checkUidPermission(java.lang.String s1, int n2);
+  17	boolean addPermission(android.content.pm.PermissionInfo p1);
+  18	void removePermission(java.lang.String s1);
+  19	void grantPermission(java.lang.String s1, java.lang.String s2);
+  20	void revokePermission(java.lang.String s1, java.lang.String s2);
+  21	boolean isProtectedBroadcast(java.lang.String s1);
+  22	int checkSignatures(java.lang.String s1, java.lang.String s2);
+  23	int checkUidSignatures(int n1, int n2);
+  24	java.lang.String[] getPackagesForUid(int n1);
+  25	java.lang.String getNameForUid(int n1);
+  26	int getUidForSharedUser(java.lang.String s1);
+  27	int getFlagsForUid(int n1);
+  28	android.content.pm.ResolveInfo resolveIntent(android.content.Intent p1, java.lang.String s2, int n3, int n4);
+  29	java.util.List queryIntentActivities(android.content.Intent p1, java.lang.String s2, int n3, int n4);
+  30	java.util.List queryIntentActivityOptions(android.content.ComponentName p1, android.content.Intent[] p2, java.lang.String[] p3, android.content.Intent p4, java.lang.String s5, int n6, int n7);
+  31	java.util.List queryIntentReceivers(android.content.Intent p1, java.lang.String s2, int n3, int n4);
+  32	android.content.pm.ResolveInfo resolveService(android.content.Intent p1, java.lang.String s2, int n3, int n4);
+  33	java.util.List queryIntentServices(android.content.Intent p1, java.lang.String s2, int n3, int n4);
+  34	java.util.List queryIntentContentProviders(android.content.Intent p1, java.lang.String s2, int n3, int n4);
+  35	android.content.pm.ParceledListSlice getInstalledPackages(int n1, int n2);
+  36	android.content.pm.ParceledListSlice getPackagesHoldingPermissions(java.lang.String[] p1, int n2, int n3);
+  37	android.content.pm.ParceledListSlice getInstalledApplications(int n1, int n2);
+  38	java.util.List getPersistentApplications(int n1);
+  39	android.content.pm.ProviderInfo resolveContentProvider(java.lang.String s1, int n2, int n3);
+  40	void querySyncProviders(java.util.List p1, java.util.List p2);
+  41	java.util.List queryContentProviders(java.lang.String s1, int n2, int n3);
+  42	android.content.pm.InstrumentationInfo getInstrumentationInfo(android.content.ComponentName p1, int n2);
+  43	java.util.List queryInstrumentation(java.lang.String s1, int n2);
+  44	void installPackage(android.net.Uri p1, android.content.pm.IPackageInstallObserver p2, int n3, java.lang.String s4);
+  45	void finishPackageInstall(int n1);
+  46	void setInstallerPackageName(java.lang.String s1, java.lang.String s2);
+  47	void deletePackageAsUser(java.lang.String s1, android.content.pm.IPackageDeleteObserver p2, int n3, int n4);
+  48	java.lang.String getInstallerPackageName(java.lang.String s1);
+  49	void addPackageToPreferred(java.lang.String s1);
+  50	void removePackageFromPreferred(java.lang.String s1);
+  51	java.util.List getPreferredPackages(int n1);
+  52	void resetPreferredActivities(int n1);
+  53	android.content.pm.ResolveInfo getLastChosenActivity(android.content.Intent p1, java.lang.String s2, int n3);
+  54	void setLastChosenActivity(android.content.Intent p1, java.lang.String s2, int n3, android.content.IntentFilter p4, int n5, android.content.ComponentName p6);
+  55	void addPreferredActivity(android.content.IntentFilter p1, int n2, android.content.ComponentName[] p3, android.content.ComponentName p4, int n5);
+  56	void replacePreferredActivity(android.content.IntentFilter p1, int n2, android.content.ComponentName[] p3, android.content.ComponentName p4);
+  57	void clearPackagePreferredActivities(java.lang.String s1);
+  58	int getPreferredActivities(java.util.List p1, java.util.List p2, java.lang.String s3);
+  59	android.content.ComponentName getHomeActivities(java.util.List p1);
+  60	void setComponentEnabledSetting(android.content.ComponentName p1, int n2, int n3, int n4);
+  61	int getComponentEnabledSetting(android.content.ComponentName p1, int n2);
+  62	void setApplicationEnabledSetting(java.lang.String s1, int n2, int n3, int n4, java.lang.String s5);
+  63	int getApplicationEnabledSetting(java.lang.String s1, int n2);
+  64	void setPackageStoppedState(java.lang.String s1, boolean p2, int n3);
+  65	void freeStorageAndNotify(long n1, android.content.pm.IPackageDataObserver p2);
+  66	void freeStorage(long n1, android.content.IntentSender p2);
+  67	void deleteApplicationCacheFiles(java.lang.String s1, android.content.pm.IPackageDataObserver p2);
+  68	void clearApplicationUserData(java.lang.String s1, android.content.pm.IPackageDataObserver p2, int n3);
+  69	void getPackageSizeInfo(java.lang.String s1, int n2, android.content.pm.IPackageStatsObserver p3);
+  70	java.lang.String[] getSystemSharedLibraryNames();
+  71	android.content.pm.FeatureInfo[] getSystemAvailableFeatures();
+  72	boolean hasSystemFeature(java.lang.String s1);
+  73	void enterSafeMode();
+  74	boolean isSafeMode();
+  75	void systemReady();
+  76	boolean hasSystemUidErrors();
+  77	void performBootDexOpt();
+  78	boolean performDexOpt(java.lang.String s1);
+  79	void updateExternalMediaStatus(boolean p1, boolean p2);
+  80	android.content.pm.PackageCleanItem nextPackageToClean(android.content.pm.PackageCleanItem p1);
+  81	void movePackage(java.lang.String s1, android.content.pm.IPackageMoveObserver p2, int n3);
+  82	boolean addPermissionAsync(android.content.pm.PermissionInfo p1);
+  83	boolean setInstallLocation(int n1);
+  84	int getInstallLocation();
+  85	void installPackageWithVerification(android.net.Uri p1, android.content.pm.IPackageInstallObserver p2, int n3, java.lang.String s4, android.net.Uri p5, android.content.pm.ManifestDigest p6, android.content.pm.ContainerEncryptionParams p7);
+  86	void installPackageWithVerificationAndEncryption(android.net.Uri p1, android.content.pm.IPackageInstallObserver p2, int n3, java.lang.String s4, android.content.pm.VerificationParams p5, android.content.pm.ContainerEncryptionParams p6);
+  87	int installExistingPackageAsUser(java.lang.String s1, int n2);
+  88	void verifyPendingInstall(int n1, int n2);
+  89	void extendVerificationTimeout(int n1, int n2, long n3);
+  90	android.content.pm.VerifierDeviceIdentity getVerifierDeviceIdentity();
+  91	boolean isFirstBoot();
+  92	boolean isOnlyCoreApps();
+  93	void setPermissionEnforced(java.lang.String s1, boolean p2);
+  94	boolean isPermissionEnforced(java.lang.String s1);
+  95	boolean isStorageLow();
+  96	boolean setApplicationBlockedSettingAsUser(java.lang.String s1, boolean p2, int n3);
+  97	boolean getApplicationBlockedSettingAsUser(java.lang.String s1, int n2);
+
+
+Class: android.os.IPermissionController
+
+   1	boolean checkPermission(java.lang.String s1, int n2, int n3);
+
+
+Class: com.android.internal.telephony.ITelephony
+
+   1	void dial(java.lang.String s1);
+   2	void call(java.lang.String s1, java.lang.String s2);
+   3	boolean showCallScreen();
+   4	boolean showCallScreenWithDialpad(boolean p1);
+   5	boolean endCall();
+   6	void answerRingingCall();
+   7	void silenceRinger();
+   8	boolean isOffhook();
+   9	boolean isRinging();
+  10	boolean isIdle();
+  11	boolean isRadioOn();
+  12	boolean isSimPinEnabled();
+  13	void cancelMissedCallsNotification();
+  14	boolean supplyPin(java.lang.String s1);
+  15	boolean supplyPuk(java.lang.String s1, java.lang.String s2);
+  16	boolean handlePinMmi(java.lang.String s1);
+  17	void toggleRadioOnOff();
+  18	boolean setRadio(boolean p1);
+  19	boolean setRadioPower(boolean p1);
+  20	void updateServiceLocation();
+  21	void enableLocationUpdates();
+  22	void disableLocationUpdates();
+  23	int enableApnType(java.lang.String s1);
+  24	int disableApnType(java.lang.String s1);
+  25	boolean enableDataConnectivity();
+  26	boolean disableDataConnectivity();
+  27	boolean isDataConnectivityPossible();
+  28	android.os.Bundle getCellLocation();
+  29	java.util.List getNeighboringCellInfo(java.lang.String s1);
+  30	int getCallState();
+  31	int getDataActivity();
+  32	int getDataState();
+  33	int getActivePhoneType();
+  34	int getCdmaEriIconIndex();
+  35	int getCdmaEriIconMode();
+  36	java.lang.String getCdmaEriText();
+  37	boolean needsOtaServiceProvisioning();
+  38	int getVoiceMessageCount();
+  39	int getNetworkType();
+  40	int getDataNetworkType();
+  41	int getVoiceNetworkType();
+  42	boolean hasIccCard();
+  43	int getLteOnCdmaMode();
+  44	java.util.List getAllCellInfo();
+  45	void setCellInfoListRate(int n1);
+
+
+Class: android.os.IPowerManager
+
+   1	void acquireWakeLock(android.os.IBinder p1, int n2, java.lang.String s3, java.lang.String s4, android.os.WorkSource p5);
+   2	void acquireWakeLockWithUid(android.os.IBinder p1, int n2, java.lang.String s3, java.lang.String s4, int n5);
+   3	void releaseWakeLock(android.os.IBinder p1, int n2);
+   4	void updateWakeLockWorkSource(android.os.IBinder p1, android.os.WorkSource p2);
+   5	boolean isWakeLockLevelSupported(int n1);
+   6	void userActivity(long n1, int n2, int n3);
+   7	void wakeUp(long n1);
+   8	void goToSleep(long n1, int n2);
+   9	void nap(long n1);
+  10	boolean isScreenOn();
+  11	void reboot(boolean p1, java.lang.String s2, boolean p3);
+  12	void shutdown(boolean p1, boolean p2);
+  13	void crash(java.lang.String s1);
+  14	void setStayOnSetting(int n1);
+  15	void setMaximumScreenOffTimeoutFromDeviceAdmin(int n1);
+  16	void setTemporaryScreenBrightnessSettingOverride(int n1);
+  17	void setTemporaryScreenAutoBrightnessAdjustmentSettingOverride(float p1);
+  18	void setAttentionLight(boolean p1, int n2);
+
+
+Class: android.print.IPrintManager
+
+   1	java.util.List getPrintJobInfos(int n1, int n2);
+   2	android.print.PrintJobInfo getPrintJobInfo(android.print.PrintJobId p1, int n2, int n3);
+   3	android.os.Bundle print(java.lang.String s1, android.print.IPrintDocumentAdapter p2, android.print.PrintAttributes p3, java.lang.String s4, int n5, int n6);
+   4	void cancelPrintJob(android.print.PrintJobId p1, int n2, int n3);
+   5	void restartPrintJob(android.print.PrintJobId p1, int n2, int n3);
+   6	void addPrintJobStateChangeListener(android.print.IPrintJobStateChangeListener p1, int n2, int n3);
+   7	void removePrintJobStateChangeListener(android.print.IPrintJobStateChangeListener p1, int n2);
+   8	java.util.List getInstalledPrintServices(int n1);
+   9	java.util.List getEnabledPrintServices(int n1);
+  10	void createPrinterDiscoverySession(android.print.IPrinterDiscoveryObserver p1, int n2);
+  11	void startPrinterDiscovery(android.print.IPrinterDiscoveryObserver p1, java.util.List p2, int n3);
+  12	void stopPrinterDiscovery(android.print.IPrinterDiscoveryObserver p1, int n2);
+  13	void validatePrinters(java.util.List p1, int n2);
+  14	void startPrinterStateTracking(android.print.PrinterId p1, int n2);
+  15	void stopPrinterStateTracking(android.print.PrinterId p1, int n2);
+  16	void destroyPrinterDiscoverySession(android.print.IPrinterDiscoveryObserver p1, int n2);
+
+
+Class: com.android.internal.app.IProcessStats
+
+   1	byte[] getCurrentStats(java.util.List p1);
+   2	android.os.ParcelFileDescriptor getStatsOverTime(long n1);
+   3	int getCurrentMemoryState();
+
+
+Class: android.os.ISchedulingPolicyService
+
+   1	int requestPriority(int n1, int n2, int n3);
+
+
+Class: android.app.ISearchManager
+
+   1	android.app.SearchableInfo getSearchableInfo(android.content.ComponentName p1);
+   2	java.util.List getSearchablesInGlobalSearch();
+   3	java.util.List getGlobalSearchActivities();
+   4	android.content.ComponentName getGlobalSearchActivity();
+   5	android.content.ComponentName getWebSearchActivity();
+   6	android.content.ComponentName getAssistIntent(int n1);
+
+
+Class: android.hardware.ISerialManager
+
+   1	java.lang.String[] getSerialPorts();
+   2	android.os.ParcelFileDescriptor openSerialPort(java.lang.String s1);
+
+
+Class: android.net.nsd.INsdManager
+
+   1	android.os.Messenger getMessenger();
+   2	void setEnabled(boolean p1);
+
+
+Class: com.android.internal.telephony.IIccPhoneBook
+
+   1	java.util.List getAdnRecordsInEf(int n1);
+   2	boolean updateAdnRecordsInEfBySearch(int n1, java.lang.String s2, java.lang.String s3, java.lang.String s4, java.lang.String s5, java.lang.String s6);
+   3	boolean updateAdnRecordsInEfByIndex(int n1, java.lang.String s2, java.lang.String s3, int n4, java.lang.String s5);
+   4	int[] getAdnRecordsSize(int n1);
+
+
+Class: com.android.internal.statusbar.IStatusBarService
+
+   1	void expandNotificationsPanel();
+   2	void collapsePanels();
+   3	void disable(int n1, android.os.IBinder p2, java.lang.String s3);
+   4	void setIcon(java.lang.String s1, java.lang.String s2, int n3, int n4, java.lang.String s5);
+   5	void setIconVisibility(java.lang.String s1, boolean p2);
+   6	void removeIcon(java.lang.String s1);
+   7	void topAppWindowChanged(boolean p1);
+   8	void setImeWindowStatus(android.os.IBinder p1, int n2, int n3);
+   9	void expandSettingsPanel();
+  10	void setCurrentUser(int n1);
+  11	void registerStatusBar(com.android.internal.statusbar.IStatusBar p1, com.android.internal.statusbar.StatusBarIconList p2, java.util.List p3, java.util.List p4, int[] p5, java.util.List p6);
+  12	void onPanelRevealed();
+  13	void onNotificationClick(java.lang.String s1, java.lang.String s2, int n3);
+  14	void onNotificationError(java.lang.String s1, java.lang.String s2, int n3, int n4, int n5, java.lang.String s6);
+  15	void onClearAllNotifications();
+  16	void onNotificationClear(java.lang.String s1, java.lang.String s2, int n3);
+  17	void setSystemUiVisibility(int n1, int n2);
+  18	void setHardKeyboardEnabled(boolean p1);
+  19	void toggleRecentApps();
+  20	void preloadRecentApps();
+  21	void cancelPreloadRecentApps();
+  22	void setWindowState(int n1, int n2);
+
+
+Class: com.android.internal.telephony.ITelephonyRegistry
+
+   1	void listen(java.lang.String s1, com.android.internal.telephony.IPhoneStateListener p2, int n3, boolean p4);
+   2	void notifyCallState(int n1, java.lang.String s2);
+   3	void notifyServiceState(android.telephony.ServiceState p1);
+   4	void notifySignalStrength(android.telephony.SignalStrength p1);
+   5	void notifyMessageWaitingChanged(boolean p1);
+   6	void notifyCallForwardingChanged(boolean p1);
+   7	void notifyDataActivity(int n1);
+   8	void notifyDataConnection(int n1, boolean p2, java.lang.String s3, java.lang.String s4, java.lang.String s5, android.net.LinkProperties p6, android.net.LinkCapabilities p7, int n8, boolean p9);
+   9	void notifyDataConnectionFailed(java.lang.String s1, java.lang.String s2);
+  10	void notifyCellLocation(android.os.Bundle p1);
+  11	void notifyOtaspChanged(int n1);
+  12	void notifyCellInfo(java.util.List p1);
+
+
+Class: com.android.internal.textservice.ITextServicesManager
+
+   1	android.view.textservice.SpellCheckerInfo getCurrentSpellChecker(java.lang.String s1);
+   2	android.view.textservice.SpellCheckerSubtype getCurrentSpellCheckerSubtype(java.lang.String s1, boolean p2);
+   3	void getSpellCheckerService(java.lang.String s1, java.lang.String s2, com.android.internal.textservice.ITextServicesSessionListener p3, com.android.internal.textservice.ISpellCheckerSessionListener p4, android.os.Bundle p5);
+   4	void finishSpellCheckerService(com.android.internal.textservice.ISpellCheckerSessionListener p1);
+   5	void setCurrentSpellChecker(java.lang.String s1, java.lang.String s2);
+   6	void setCurrentSpellCheckerSubtype(java.lang.String s1, int n2);
+   7	void setSpellCheckerEnabled(boolean p1);
+   8	boolean isSpellCheckerEnabled();
+   9	android.view.textservice.SpellCheckerInfo[] getEnabledSpellCheckers();
+
+
+Class: android.app.IUiModeManager
+
+   1	void enableCarMode(int n1);
+   2	void disableCarMode(int n1);
+   3	int getCurrentModeType();
+   4	void setNightMode(int n1);
+   5	int getNightMode();
+
+
+Class: android.os.IUpdateLock
+
+   1	void acquireUpdateLock(android.os.IBinder p1, java.lang.String s2);
+   2	void releaseUpdateLock(android.os.IBinder p1);
+
+
+Class: com.android.internal.app.IUsageStats
+
+   1	void noteResumeComponent(android.content.ComponentName p1);
+   2	void notePauseComponent(android.content.ComponentName p1);
+   3	void noteLaunchTime(android.content.ComponentName p1, int n2);
+   4	com.android.internal.os.PkgUsageStats getPkgUsageStats(android.content.ComponentName p1);
+   5	com.android.internal.os.PkgUsageStats[] getAllPkgUsageStats();
+
+
+Class: android.hardware.usb.IUsbManager
+
+   1	void getDeviceList(android.os.Bundle p1);
+   2	android.os.ParcelFileDescriptor openDevice(java.lang.String s1);
+   3	android.hardware.usb.UsbAccessory getCurrentAccessory();
+   4	android.os.ParcelFileDescriptor openAccessory(android.hardware.usb.UsbAccessory p1);
+   5	void setDevicePackage(android.hardware.usb.UsbDevice p1, java.lang.String s2, int n3);
+   6	void setAccessoryPackage(android.hardware.usb.UsbAccessory p1, java.lang.String s2, int n3);
+   7	boolean hasDevicePermission(android.hardware.usb.UsbDevice p1);
+   8	boolean hasAccessoryPermission(android.hardware.usb.UsbAccessory p1);
+   9	void requestDevicePermission(android.hardware.usb.UsbDevice p1, java.lang.String s2, android.app.PendingIntent p3);
+  10	void requestAccessoryPermission(android.hardware.usb.UsbAccessory p1, java.lang.String s2, android.app.PendingIntent p3);
+  11	void grantDevicePermission(android.hardware.usb.UsbDevice p1, int n2);
+  12	void grantAccessoryPermission(android.hardware.usb.UsbAccessory p1, int n2);
+  13	boolean hasDefaults(java.lang.String s1, int n2);
+  14	void clearDefaults(java.lang.String s1, int n2);
+  15	void setCurrentFunction(java.lang.String s1, boolean p2);
+  16	void setMassStorageBackingFile(java.lang.String s1);
+  17	void allowUsbDebugging(boolean p1, java.lang.String s2);
+  18	void denyUsbDebugging();
+  19	void clearUsbDebuggingKeys();
+
+
+Class: android.os.IUserManager
+
+   1	android.content.pm.UserInfo createUser(java.lang.String s1, int n2);
+   2	boolean removeUser(int n1);
+   3	void setUserName(int n1, java.lang.String s2);
+   4	void setUserIcon(int n1, android.graphics.Bitmap p2);
+   5	android.graphics.Bitmap getUserIcon(int n1);
+   6	java.util.List getUsers(boolean p1);
+   7	android.content.pm.UserInfo getUserInfo(int n1);
+   8	boolean isRestricted();
+   9	void setGuestEnabled(boolean p1);
+  10	boolean isGuestEnabled();
+  11	void wipeUser(int n1);
+  12	int getUserSerialNumber(int n1);
+  13	int getUserHandle(int n1);
+  14	android.os.Bundle getUserRestrictions(int n1);
+  15	void setUserRestrictions(android.os.Bundle p1, int n2);
+  16	void setApplicationRestrictions(java.lang.String s1, android.os.Bundle p2, int n3);
+  17	android.os.Bundle getApplicationRestrictions(java.lang.String s1);
+  18	android.os.Bundle getApplicationRestrictionsForUser(java.lang.String s1, int n2);
+  19	boolean setRestrictionsChallenge(java.lang.String s1);
+  20	int checkRestrictionsChallenge(java.lang.String s1);
+  21	boolean hasRestrictionsChallenge();
+  22	void removeRestrictions();
+
+
+Class: android.os.IVibratorService
+
+   1	boolean hasVibrator();
+   2	void vibrate(int n1, java.lang.String s2, long n3, android.os.IBinder p4);
+   3	void vibratePattern(int n1, java.lang.String s2, long[] p3, int n4, android.os.IBinder p5);
+   4	void cancelVibrate(android.os.IBinder p1);
+
+
+Class: android.app.IWallpaperManager
+
+   1	android.os.ParcelFileDescriptor setWallpaper(java.lang.String s1);
+   2	void setWallpaperComponent(android.content.ComponentName p1);
+   3	android.os.ParcelFileDescriptor getWallpaper(android.app.IWallpaperManagerCallback p1, android.os.Bundle p2);
+   4	android.app.WallpaperInfo getWallpaperInfo();
+   5	void clearWallpaper();
+   6	boolean hasNamedWallpaper(java.lang.String s1);
+   7	void setDimensionHints(int n1, int n2);
+   8	int getWidthHint();
+   9	int getHeightHint();
+
+
+Class: android.net.wifi.IWifiManager
+
+   1	java.util.List getConfiguredNetworks();
+   2	int addOrUpdateNetwork(android.net.wifi.WifiConfiguration p1);
+   3	boolean removeNetwork(int n1);
+   4	boolean enableNetwork(int n1, boolean p2);
+   5	boolean disableNetwork(int n1);
+   6	boolean pingSupplicant();
+   7	void startScan(android.os.WorkSource p1);
+   8	java.util.List getScanResults(java.lang.String s1);
+   9	void disconnect();
+  10	void reconnect();
+  11	void reassociate();
+  12	android.net.wifi.WifiInfo getConnectionInfo();
+  13	boolean setWifiEnabled(boolean p1);
+  14	int getWifiEnabledState();
+  15	void setCountryCode(java.lang.String s1, boolean p2);
+  16	void setFrequencyBand(int n1, boolean p2);
+  17	int getFrequencyBand();
+  18	boolean isDualBandSupported();
+  19	boolean saveConfiguration();
+  20	android.net.DhcpInfo getDhcpInfo();
+  21	boolean isScanAlwaysAvailable();
+  22	boolean acquireWifiLock(android.os.IBinder p1, int n2, java.lang.String s3, android.os.WorkSource p4);
+  23	void updateWifiLockWorkSource(android.os.IBinder p1, android.os.WorkSource p2);
+  24	boolean releaseWifiLock(android.os.IBinder p1);
+  25	void initializeMulticastFiltering();
+  26	boolean isMulticastEnabled();
+  27	void acquireMulticastLock(android.os.IBinder p1, java.lang.String s2);
+  28	void releaseMulticastLock();
+  29	void setWifiApEnabled(android.net.wifi.WifiConfiguration p1, boolean p2);
+  30	int getWifiApEnabledState();
+  31	android.net.wifi.WifiConfiguration getWifiApConfiguration();
+  32	void setWifiApConfiguration(android.net.wifi.WifiConfiguration p1);
+  33	void startWifi();
+  34	void stopWifi();
+  35	void addToBlacklist(java.lang.String s1);
+  36	void clearBlacklist();
+  37	android.os.Messenger getWifiServiceMessenger();
+  38	android.os.Messenger getWifiStateMachineMessenger();
+  39	java.lang.String getConfigFile();
+  40	void captivePortalCheckComplete();
+  41	void enableTdls(java.lang.String s1, boolean p2);
+  42	void enableTdlsWithMacAddress(java.lang.String s1, boolean p2);
+  43	boolean requestBatchedScan(android.net.wifi.BatchedScanSettings p1, android.os.IBinder p2);
+  44	void stopBatchedScan(android.net.wifi.BatchedScanSettings p1);
+  45	java.util.List getBatchedScanResults(java.lang.String s1);
+  46	boolean isBatchedScanSupported();
+  47	void pollBatchedScan();
+
+
+Class: android.net.wifi.p2p.IWifiP2pManager
+
+   1	android.os.Messenger getMessenger();
+   2	void setMiracastMode(int n1);
+
+
+Class: android.view.IWindowManager
+
+   1	boolean startViewServer(int n1);
+   2	boolean stopViewServer();
+   3	boolean isViewServerRunning();
+   4	android.view.IWindowSession openSession(com.android.internal.view.IInputMethodClient p1, com.android.internal.view.IInputContext p2);
+   5	boolean inputMethodClientHasFocus(com.android.internal.view.IInputMethodClient p1);
+   6	void getInitialDisplaySize(int n1, android.graphics.Point p2);
+   7	void getBaseDisplaySize(int n1, android.graphics.Point p2);
+   8	void setForcedDisplaySize(int n1, int n2, int n3);
+   9	void clearForcedDisplaySize(int n1);
+  10	int getInitialDisplayDensity(int n1);
+  11	int getBaseDisplayDensity(int n1);
+  12	void setForcedDisplayDensity(int n1, int n2);
+  13	void clearForcedDisplayDensity(int n1);
+  14	void setOverscan(int n1, int n2, int n3, int n4, int n5);
+  15	void pauseKeyDispatching(android.os.IBinder p1);
+  16	void resumeKeyDispatching(android.os.IBinder p1);
+  17	void setEventDispatching(boolean p1);
+  18	void addWindowToken(android.os.IBinder p1, int n2);
+  19	void removeWindowToken(android.os.IBinder p1);
+  20	void addAppToken(int n1, android.view.IApplicationToken p2, int n3, int n4, int n5, boolean p6, boolean p7, int n8);
+  21	void setAppGroupId(android.os.IBinder p1, int n2);
+  22	void setAppOrientation(android.view.IApplicationToken p1, int n2);
+  23	int getAppOrientation(android.view.IApplicationToken p1);
+  24	void setFocusedApp(android.os.IBinder p1, boolean p2);
+  25	void prepareAppTransition(int n1, boolean p2);
+  26	int getPendingAppTransition();
+  27	void overridePendingAppTransition(java.lang.String s1, int n2, int n3, android.os.IRemoteCallback p4);
+  28	void overridePendingAppTransitionScaleUp(int n1, int n2, int n3, int n4);
+  29	void overridePendingAppTransitionThumb(android.graphics.Bitmap p1, int n2, int n3, android.os.IRemoteCallback p4, boolean p5);
+  30	void executeAppTransition();
+  31	void setAppStartingWindow(android.os.IBinder p1, java.lang.String s2, int n3, android.content.res.CompatibilityInfo p4, java.lang.CharSequence p5, int n6, int n7, int n8, int n9, android.os.IBinder p10, boolean p11);
+  32	void setAppWillBeHidden(android.os.IBinder p1);
+  33	void setAppVisibility(android.os.IBinder p1, boolean p2);
+  34	void startAppFreezingScreen(android.os.IBinder p1, int n2);
+  35	void stopAppFreezingScreen(android.os.IBinder p1, boolean p2);
+  36	void removeAppToken(android.os.IBinder p1);
+  37	android.content.res.Configuration updateOrientationFromAppTokens(android.content.res.Configuration p1, android.os.IBinder p2);
+  38	void setNewConfiguration(android.content.res.Configuration p1);
+  39	void startFreezingScreen(int n1, int n2);
+  40	void stopFreezingScreen();
+  41	void disableKeyguard(android.os.IBinder p1, java.lang.String s2);
+  42	void reenableKeyguard(android.os.IBinder p1);
+  43	void exitKeyguardSecurely(android.view.IOnKeyguardExitResult p1);
+  44	boolean isKeyguardLocked();
+  45	boolean isKeyguardSecure();
+  46	boolean inKeyguardRestrictedInputMode();
+  47	void dismissKeyguard();
+  48	void closeSystemDialogs(java.lang.String s1);
+  49	float getAnimationScale(int n1);
+  50	float[] getAnimationScales();
+  51	void setAnimationScale(int n1, float p2);
+  52	void setAnimationScales(float[] p1);
+  53	void setInTouchMode(boolean p1);
+  54	void showStrictModeViolation(boolean p1);
+  55	void setStrictModeVisualIndicatorPreference(java.lang.String s1);
+  56	void updateRotation(boolean p1, boolean p2);
+  57	int getRotation();
+  58	int watchRotation(android.view.IRotationWatcher p1);
+  59	void removeRotationWatcher(android.view.IRotationWatcher p1);
+  60	int getPreferredOptionsPanelGravity();
+  61	void freezeRotation(int n1);
+  62	void thawRotation();
+  63	boolean isRotationFrozen();
+  64	android.graphics.Bitmap screenshotApplications(android.os.IBinder p1, int n2, int n3, int n4, boolean p5);
+  65	void statusBarVisibilityChanged(int n1);
+  66	boolean waitForWindowDrawn(android.os.IBinder p1, android.os.IRemoteCallback p2);
+  67	boolean hasNavigationBar();
+  68	void lockNow(android.os.Bundle p1);
+  69	android.os.IBinder getFocusedWindowToken();
+  70	void setInputFilter(android.view.IInputFilter p1);
+  71	void getWindowFrame(android.os.IBinder p1, android.graphics.Rect p2);
+  72	boolean isSafeModeEnabled();
+  73	void setMagnificationCallbacks(android.view.IMagnificationCallbacks p1);
+  74	void setMagnificationSpec(android.view.MagnificationSpec p1);
+  75	android.view.MagnificationSpec getCompatibleMagnificationSpecForWindow(android.os.IBinder p1);
+  76	void setTouchExplorationEnabled(boolean p1);
