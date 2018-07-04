@@ -1,6 +1,0 @@
-Class: android.view.accessibility.IAccessibilityManager
-
-   3	java.util.List getInstalledAccessibilityServiceList(int n1);
-   4	java.util.List getEnabledAccessibilityServiceList(int n1, int n2);
-   5	void interrupt(int n1);
-  11	android.os.IBinder getWindowToken(int n1);

@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="VcsDirectoryMappings">
-    <mapping directory="$PROJECT_DIR$/frida" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/frida/capstone" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/frida/frida-clr" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/frida/frida-core" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/frida/frida-gum" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/frida/frida-node" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/frida/frida-python" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/frida/frida-qml" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/frida/frida-swift" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
   </component>
 </project>

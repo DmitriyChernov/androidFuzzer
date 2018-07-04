@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
@@ -16,14 +18,36 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="50dp"
-            android:text="Test">
+            android:text="@string/textViewText">
         </TextView>
+
         <Button
-            android:id="@+id/btnOk"
+            android:id="@+id/btnFuzz"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Fuzz">
+            android:text="@string/btnFuzzText"></Button>
+
+        <Button
+            android:id="@+id/btnRead"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/btnReadText"></Button>
+
+        <Button
+            android:id="@+id/btnTest"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/btnTestText">
         </Button>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Button" />
 </LinearLayout>

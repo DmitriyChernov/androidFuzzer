@@ -1,5 +1,5 @@
 from socket import *
-import thread, time
+import thread, datetime
 
 def input_thread(L):
     key = raw_input()
@@ -9,9 +9,13 @@ port = 4444
 s = socket(AF_INET, SOCK_DGRAM)
 s.bind(("", port))
 
-f = open('fuzzing.log', 'w')
+now = datetime.datetime.now()
+dt = now.strftime("_%Y-%m-%d_%H:%M")
+filename = "log/fuzzing" + dt + ".log"
+f = codecs.open(filename, 'w')
 
-print "Waiting messages on port:", port
+
+print "\n(UDP) Waiting messages on port:", port
 
 L = []
 thread.start_new_thread(input_thread, (L,))
@@ -20,7 +24,7 @@ while 1:
 	if L: break
 	data, addr = s.recvfrom(1024)
 	f.write(data)
-	print "package recieved: " + data
+	print "msg recieved: " + data
 
 s.close()
 f.close()

@@ -2,6 +2,7 @@ package com.example.konyash.fuzzer;
 
 import android.os.AsyncTask;
 import android.os.Build;
+import android.util.Log;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -11,10 +12,11 @@ public class UDP_Client {
     private AsyncTask<Void, Void, Void> async_cient;
     public String Message;
 
-    public void sendMessage() {
+    public synchronized void sendMessage() {
         async_cient = new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
+                String msg = Message;
                 DatagramSocket ds = null;
 
                 try {
@@ -23,13 +25,16 @@ public class UDP_Client {
                     int port = 4444;
                     InetAddress IPAddress = InetAddress.getByName("10.0.2.2");
 
-                    dp = new DatagramPacket(Message.getBytes()
-                            , Message.length()
+                    dp = new DatagramPacket(msg.getBytes()
+                            , msg.length()
                             , IPAddress
                             , port);
-                    ds.setBroadcast(true);
+                    //ds.setBroadcast(true);
                     ds.send(dp);
+
+                    ds.close();
                 } catch (Exception e) {
+                    Log.e("ex", Message.length() + "| " + Message);
                     e.printStackTrace();
                 } finally {
                     if (ds != null) {
@@ -44,8 +49,14 @@ public class UDP_Client {
             }
         };
 
+        try {
+            Thread.currentThread().sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if (Build.VERSION.SDK_INT >= 11)
             async_cient.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         else async_cient.execute();
+
     }
 }
