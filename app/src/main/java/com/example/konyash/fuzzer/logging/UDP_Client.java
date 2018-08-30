@@ -1,4 +1,4 @@
-package com.example.konyash.fuzzer;
+package com.example.konyash.fuzzer.logging;
 
 import android.os.AsyncTask;
 import android.os.Build;

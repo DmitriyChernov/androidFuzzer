@@ -1,10 +1,15 @@
-package com.example.konyash.fuzzer;
+package com.example.konyash.fuzzer.generator;
 
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Parcel;
 import android.util.Log;
+
+import com.example.konyash.fuzzer.fuzzer.IFuzzer;
+import com.example.konyash.fuzzer.utils.DebugOutput;
+import com.example.konyash.fuzzer.utils.ReflectionUtils;
+import com.example.konyash.fuzzer.main.MainActivity;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -16,28 +21,28 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Random;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 public class Value_Generator {
-    MainActivity mainActivity;
-    private static Queue<String> responceQueue = new LinkedList<String>();
+    private final MainActivity mainActivity;
+    private final IFuzzer fuzzer;
+
+    private static Queue<String> responseQueue = new LinkedList<String>();
 
     // Array that stores classes that was parsed. Need for generate instance of java.lang.Class.
     ArrayList<Class> classStore;
 
-    public Value_Generator (MainActivity _mainActivity)
+    public Value_Generator (MainActivity mainActivity, IFuzzer fuzzer)
     {
-        mainActivity = _mainActivity;
+        this.mainActivity = mainActivity;
+        this.fuzzer = fuzzer;
         classStore = new ArrayList<>();
 
         fillClassStore();
@@ -45,7 +50,7 @@ public class Value_Generator {
 
     private void fillClassStore()
     {
-        Reflection_Utils reflections = new Reflection_Utils();
+        ReflectionUtils reflections = new ReflectionUtils();
 
         try {
             List<String> classes = reflections.getAllClasses(mainActivity.getApplicationContext());
@@ -132,10 +137,10 @@ public class Value_Generator {
     {
         while (true) {
             ExecutorService executor = Executors.newSingleThreadExecutor();
-            Future<Integer> future = executor.submit(new RadamsaCall(mainActivity, options, input));
+            Future<Integer> future = executor.submit(new RadamsaCall(fuzzer, options, input));
             try {
                 future.get(3, TimeUnit.SECONDS);
-                return responceQueue.poll();
+                return responseQueue.poll();
             } catch (Exception e) {
                 future.cancel(true);
                 continue;
@@ -145,12 +150,12 @@ public class Value_Generator {
         }
     }
 
-    public static void setResponce (String resp) {
-        responceQueue.add(resp);
+    public static void setResponse(String resp) {
+        responseQueue.add(resp);
     }
 
-    public static int responceQueueSize() {
-        return responceQueue.size();
+    public static int responseQueueSize() {
+        return responseQueue.size();
     }
 
     private Object generateInteger()

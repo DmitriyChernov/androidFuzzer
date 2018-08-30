@@ -1,4 +1,4 @@
-package com.example.konyash.fuzzer;
+package com.example.konyash.fuzzer.utils;
 
 import android.util.Log;
 

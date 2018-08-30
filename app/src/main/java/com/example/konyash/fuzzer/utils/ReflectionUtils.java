@@ -1,4 +1,4 @@
-package com.example.konyash.fuzzer;
+package com.example.konyash.fuzzer.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,6 +6,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.Log;
+
+import com.example.konyash.fuzzer.main.MainActivity;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +17,7 @@ import java.util.List;
 
 import dalvik.system.DexFile;
 
-public class Reflection_Utils {
+public class ReflectionUtils {
 
     private static final String EXTRACTED_NAME_EXT = ".classes";
     private static final String EXTRACTED_SUFFIX = ".zip";
@@ -136,7 +138,7 @@ public class Reflection_Utils {
         }
     }
 
-    public static String[] test (MainActivity ma, String packageName) throws IOException {
+    public static String[] test(MainActivity ma, String packageName) throws IOException {
 
         ArrayList<String> classes = new ArrayList<String>();
         try {

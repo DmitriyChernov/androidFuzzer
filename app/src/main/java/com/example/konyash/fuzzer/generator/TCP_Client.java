@@ -1,7 +1,11 @@
-package com.example.konyash.fuzzer;
+package com.example.konyash.fuzzer.generator;
 
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.example.konyash.fuzzer.fuzzer.Fuzzer;
+import com.example.konyash.fuzzer.fuzzer.IFuzzer;
+import com.example.konyash.fuzzer.main.MainActivity;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -13,16 +17,16 @@ import java.net.Socket;
 public class TCP_Client extends AsyncTask<String,Void,String> {
     private static final int TCP_SERVER_PORT = 4445;
     private Socket s;
-    private com.example.konyash.fuzzer.MainActivity activity;
+    private final IFuzzer fuzzer;
 
-    public TCP_Client(com.example.konyash.fuzzer.MainActivity activity) {
-        this.activity = activity;
+    public TCP_Client(IFuzzer fuzzer) {
+        this.fuzzer = fuzzer;
     }
 
     @Override
     protected void onPostExecute(String res)
     {
-        this.activity.setResp(res);
+        fuzzer.setRadamsaResponse(res);
         try {
             s.close();
         } catch (IOException e) {
@@ -38,7 +42,7 @@ public class TCP_Client extends AsyncTask<String,Void,String> {
         String res = "";
         try {
             // adb connect
-            s = new Socket("192.168.100.4", TCP_SERVER_PORT);
+            s = new Socket("192.168.0.14", TCP_SERVER_PORT);
 
             // init
             BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
@@ -68,7 +72,7 @@ public class TCP_Client extends AsyncTask<String,Void,String> {
             // accept server response
             res = in.readLine() + System.getProperty("line.separator");
             s.close();
-            activity.setResp(res);
+            fuzzer.setRadamsaResponse(res);
         } catch (IOException e) {
             Log.e("TcpClient", "io crash");
             e.printStackTrace();
