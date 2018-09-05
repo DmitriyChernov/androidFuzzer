@@ -39,7 +39,7 @@ public class Fuzzer extends IFuzzer {
                 Log.i("Object: ", "" + sysService);
                 Message msg = new Message();
                 msg.what = 3;
-                msg.obj = sysService;
+                msg.obj = ssName;
                 controller.sendMessage(msg);
             } catch (NullPointerException ex) {
                 continue;

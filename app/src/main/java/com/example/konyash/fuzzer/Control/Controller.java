@@ -3,6 +3,7 @@ package com.example.konyash.fuzzer.Control;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.example.konyash.fuzzer.fuzzer.AIDLFuzzer;
 import com.example.konyash.fuzzer.fuzzer.Fuzzer;
@@ -71,10 +72,11 @@ public class Controller extends Handler {
     }
 
     private void stop() {
+        Log.d("Pigeon", "kurlyk");
         fuzzingThread.interrupt();
     }
 
     private void setServiceNowFuzzing(String serviceName) {
-        mainActivity.setServiceNowFuzzing(serviceName);
+       mainActivity.setServiceNowFuzzing(serviceName);
     }
 }

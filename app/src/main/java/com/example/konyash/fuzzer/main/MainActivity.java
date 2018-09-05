@@ -48,6 +48,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         btnFuzz.setOnClickListener(this);
         btnTest.setOnClickListener(this);
+        btnStop.setOnClickListener(this);
+        btnRead.setOnClickListener(this);
 
         try {
             controller = new Controller(this);
@@ -76,9 +78,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 return;
         }
 
-        btnStop.setActivated(isRunning);
-        btnRead.setActivated(!isRunning);
-        btnFuzz.setActivated(!isRunning);
+        btnStop.setEnabled(isRunning);
+        btnRead.setEnabled(!isRunning);
+        btnFuzz.setEnabled(!isRunning);
     }
 
     public void setServiceNowFuzzing(String serviceName) {

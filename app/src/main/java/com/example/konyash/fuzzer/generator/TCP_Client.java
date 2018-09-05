@@ -16,6 +16,7 @@ import java.net.Socket;
 
 public class TCP_Client extends AsyncTask<String,Void,String> {
     private static final int TCP_SERVER_PORT = 4445;
+    private static final String TCP_SERVER_IP = "192.168.0.12";
     private Socket s;
     private final IFuzzer fuzzer;
 
@@ -51,7 +52,7 @@ public class TCP_Client extends AsyncTask<String,Void,String> {
         String res = "";
         try {
             // adb connect
-            s = new Socket("192.168.0.14", TCP_SERVER_PORT);
+            s = new Socket(TCP_SERVER_IP, TCP_SERVER_PORT);
 
             // init
             BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
