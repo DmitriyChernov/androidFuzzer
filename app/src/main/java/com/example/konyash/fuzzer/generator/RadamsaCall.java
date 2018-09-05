@@ -21,6 +21,10 @@ public class RadamsaCall implements Callable {
         this.input = input;
     }
 
+    /**
+     * Creating tcp-client to communicate with radamsa that deployed on remote server
+     * @return size of response queue after getting response
+     */
     @Override
     public Integer call() {
         TCP_Client radamsa = new TCP_Client(fuzzer);

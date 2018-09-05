@@ -6,6 +6,7 @@ import android.os.Binder;
 import android.os.Parcel;
 import android.util.Log;
 
+import com.example.konyash.fuzzer.Control.Controller;
 import com.example.konyash.fuzzer.fuzzer.IFuzzer;
 import com.example.konyash.fuzzer.utils.DebugOutput;
 import com.example.konyash.fuzzer.utils.ReflectionUtils;
@@ -31,7 +32,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 public class Value_Generator {
-    private final MainActivity mainActivity;
+    private final Controller controller;
     private final IFuzzer fuzzer;
 
     private static Queue<String> responseQueue = new LinkedList<String>();
@@ -39,21 +40,29 @@ public class Value_Generator {
     // Array that stores classes that was parsed. Need for generate instance of java.lang.Class.
     ArrayList<Class> classStore;
 
-    public Value_Generator (MainActivity mainActivity, IFuzzer fuzzer)
+    /**
+     * Creates primitive and object values
+     * @param controller handler of main activity to get context
+     * @param fuzzer to set radamsa response
+     */
+    public Value_Generator(Controller controller, IFuzzer fuzzer)
     {
-        this.mainActivity = mainActivity;
+        this.controller = controller;
         this.fuzzer = fuzzer;
         classStore = new ArrayList<>();
 
         fillClassStore();
     }
 
+    /**
+     * Fills list of classes that was used in work to create objects of them further
+     */
     private void fillClassStore()
     {
         ReflectionUtils reflections = new ReflectionUtils();
 
         try {
-            List<String> classes = reflections.getAllClasses(mainActivity.getApplicationContext());
+            List<String> classes = reflections.getAllClasses(Controller.getContext());
             //Log.e("classes len:", "" + classes.size());
             for (int i = 0; i < classes.size(); i++) {
                 try {
@@ -70,7 +79,11 @@ public class Value_Generator {
         }
     }
 
-    // Returns type by his name. Needed to parse primitive types name.
+    /**
+     * Returns class or type by that name
+     * @param name name of class or type
+     * @return type by his name. Needed to parse primitive types name.
+     */
     public static Class getType(String name)
     {
         Class res;
@@ -92,8 +105,12 @@ public class Value_Generator {
         return Object.class;
     }
 
+    /**
+     * Generates value of specified name of type or class
+     * @param type name of class or type
+     * @return generated value
+     */
     public Object generateValue(String type) {
-        //Log.i("Value_generator", type);
         try {
             classStore.add(Class.forName(type));
         } catch (ClassNotFoundException e) {}
@@ -112,10 +129,14 @@ public class Value_Generator {
         }
     }
 
+    /**
+     * Generates value of specified name of type or class
+     * @param type name of class or type
+     * @param callStack stack of construction
+     * @return generated value
+     */
     public Object generateValue(String type, ArrayList<String> callStack) {
-        //Log.i("Value_generator", type);
         try {
-            //Log.i("classname", Class.forName(type).getName());
             classStore.add(Class.forName(type));
         } catch (ClassNotFoundException e) {}
 
@@ -133,6 +154,12 @@ public class Value_Generator {
         }
     }
 
+    /**
+     * Calls radamsa to mutate value
+     * @param input radamsa intruction
+     * @param options radamsa options
+     * @return radamsa response: mutated value
+     */
     private String radamsaCall(String input, String options)
     {
         while (true) {
@@ -150,14 +177,26 @@ public class Value_Generator {
         }
     }
 
+    /**
+     * Addss radamsa response to response queue
+     * @param resp radamsa response: mutated value
+     */
     public static void setResponse(String resp) {
         responseQueue.add(resp);
     }
 
+    /**
+     *
+     * @return size of radamsa response queue
+     */
     public static int responseQueueSize() {
         return responseQueue.size();
     }
 
+    /**
+     * Generates Integer object. Cycle needs to pass mutated values that cannot be casted to target type
+     * @return object that is int value
+     */
     private Object generateInteger()
     {
         Random rand = new Random();
@@ -172,6 +211,10 @@ public class Value_Generator {
         }
     }
 
+    /**
+     * Generates Long object. Cycle needs to pass mutated values that cannot be casted to target type
+     * @return object that is long value
+     */
     private Object generateLong()
     {
         Random rand = new Random();
@@ -186,6 +229,10 @@ public class Value_Generator {
         }
     }
 
+    /**
+     * Generates Float object. Cycle needs to pass mutated values that cannot be casted to target type
+     * @return object that is float value
+     */
     private Object generateFloat()
     {
         Random rand = new Random();
@@ -200,6 +247,10 @@ public class Value_Generator {
         }
     }
 
+    /**
+     * Generates Double object. Cycle needs to pass mutated values that cannot be casted to target type
+     * @return object that is double value
+     */
     private Object generateDouble()
     {
         Random rand = new Random();
@@ -214,6 +265,10 @@ public class Value_Generator {
         }
     }
 
+    /**
+     * Generates Byte object. Cycle needs to pass mutated values that cannot be casted to target type
+     * @return object that is byte value
+     */
     private Object generateByte()
     {
         Random rand = new Random();
@@ -223,12 +278,20 @@ public class Value_Generator {
         return b[0];
     }
 
+    /**
+     * Generates Boolean object.
+     * @return object that is float value
+     */
     private Object generateBoolean()
     {
         Random rand = new Random();
         return rand.nextBoolean();
     }
 
+    /**
+     * Generates alphanumeric char object.
+     * @return object that is char value
+     */
     private Object generateChar()
     {
         String randStr = "abcdefghklmnopqrstuvwxyz" +
@@ -240,6 +303,10 @@ public class Value_Generator {
         return randStr.charAt(pos);
     }
 
+    /**
+     * Generates random and mutated String object.
+     * @return object that is String value
+     */
     private Object generateString()
     {
         String randStr = generateRandomString("abcdefghklmnopqrstuvwxyz" +
@@ -249,6 +316,10 @@ public class Value_Generator {
         return String.valueOf(radamsaCall(randStr, "NONE"));
     }
 
+    /**
+     * Generates random String < 255 chars.
+     * @return object that is String value
+     */
     public String generateRandomString(String chars)
     {
         Random rand = new Random();
@@ -261,6 +332,13 @@ public class Value_Generator {
         return new String(text);
     }
 
+
+    /**
+     * Returns object value of specified class names
+     * @param className class name as string
+     * @param callStack stack of construction
+     * @return generated value
+     */
     public Object prepareTestObjectByClass(final String className, ArrayList<String> callStack) {
         // Check on cycle: if this type already in call stack, than return null.
         String trace = "";
@@ -274,37 +352,29 @@ public class Value_Generator {
 
         if (isCycleFound) {
             trace += className;
-            //Log.e("call_cycle", "found! Trace: " + trace + ".");
             return null;
         }
 
         // In other cases add classname to call stack and keep working.
         callStack.add(className);
 
-        //Log.e("DEBUG", "==========");
-        //Log.i("Classname", className);
-
         //// There will be specific cases; classes which instance cannot be created automatically.
         // Cant be created otherway :(
         if (className.equals("android.content.Context")) {
             callStack.remove(callStack.size() - 1);
-
-            return mainActivity.getApplicationContext();
+            return Controller.getContext();
         }
 
         // Cant be created otherway :(
         if (className.equals("java.lang.Class")) {
             callStack.remove(callStack.size() - 1);
-
             return generateClass();
         }
 
         // Cant be created otherway :(
         if (className.equals("android.os.Parcel")) {
             callStack.remove(callStack.size() - 1);
-
             Parcel p = Parcel.obtain();
-
             // Adding some salt.
             p.writeString((String) generateString());
             return p;
@@ -313,14 +383,12 @@ public class Value_Generator {
         // Cant be created otherway :(
         if (className.equals("android.net.Uri")) {
             callStack.remove(callStack.size() - 1);
-
             return Uri.parse((String) generateString());
         }
 
         // Cant be created otherway :(
         if (className.equals("java.lang.CharSequence")) {
             callStack.remove(callStack.size() - 1);
-
             String s = "";
             CharSequence cs = s;
             return Uri.parse((String) generateString());
@@ -329,8 +397,6 @@ public class Value_Generator {
         try {
             boolean isArray = false;
             String arrayElemsType = "";
-
-
             // Check if target is array, manually
             try {
                 Class targetClass = Class.forName(className);
@@ -344,21 +410,17 @@ public class Value_Generator {
                     arrayElemsType = className.replace("[]", "");
                 }
             }
-
             // If class is array then prepare it with creating instances of element type
             if (isArray) {
                 Class compClass = getType(arrayElemsType);
-
                 // If target class is container than generate n (random 1..10) instances of that type
                 Random rand = new Random();
                 int len = rand.nextInt(9) + 1;
 
                 Object instance = Array.newInstance(compClass, len);
-                //Log.i("DEBUG", instance.getClass().isArray() + " = is Array. Obj: " + instance.toString() + ". Size: " + len + ". Element: " + compClass);
                 for (int i = 0; i < len; i ++) {
                     Object elem = generateValue(arrayElemsType, callStack);
                     Array.set(instance, i, elem);
-                    //Log.i("array_" + i + ")", "val = " + elem);
                 }
 
                 callStack.remove(callStack.size() - 1);
@@ -368,24 +430,18 @@ public class Value_Generator {
             // Getting java.lang.class from string
             Class<?> targetClass = Class.forName(className);
 
-
             // Check if target is generic
             if (targetClass.getTypeParameters().length > 0) {
-                //Log.e("DEBUG", "target is generic type");
-
                 if (targetClass.getName().equals("java.util.List")) {
                     // If target class is container than generate n (random 1..10) instances of that type
                     Random rand = new Random();
                     int len = rand.nextInt(9) + 1;
-
                     Class compClass = generateClass();
-
                     ArrayList<Object> instance = new ArrayList<Object>();
-                    //Log.i("DEBUG", instance.getClass().isArray() + " = is Lost. Obj: " + instance.toString() + ". Size: " + len + ". Element: " + compClass);
+
                     for (int i = 0; i < len; i ++) {
                         Object elem = generateValue(compClass.getName(), callStack);
                         instance.add(i, elem);
-                        //Log.i("list_" + i + ")", "val = " + elem);
                     }
 
                     callStack.remove(callStack.size() - 1);
@@ -405,8 +461,6 @@ public class Value_Generator {
             }
 
             Constructor<?> constructors[] = targetClass.getDeclaredConstructors();  // get all the constructors
-
-            //Log.i("DEBUG", "Constructor count: " + constructors.length);
 
             // Check if type has no constructors. It means that it is interface or abstract class.
             if (constructors.length == 0) {
@@ -432,7 +486,6 @@ public class Value_Generator {
                 }
 
                 if (targetClass.isInterface()) {
-                    //Log.i("DEBUG","Constructing binder...");
                     // Constructing binder as stub. A lot of objects of Android implements IBinder interface.
                     Object instance = Proxy.newProxyInstance(targetClass.getClassLoader(), new Class[]{targetClass}, new InvocationHandler() {
                         @Override
@@ -446,26 +499,18 @@ public class Value_Generator {
                             return binder;
                         }
                     });
-
-                    //Log.i("DEBUG","" + instance);
-
                     callStack.remove(callStack.size() - 1);
                     return instance;
 
                 } else {
-                    //Log.e("DEBUG", "TO DO: create object without constructors; not an interface.");
-
                     callStack.remove(callStack.size() - 1);
                     return null;
                 }
             // If type has constructors, than trying to create instance by it.
             } else {
-                //Log.i("DEBUG","Invoking constructor...");
                 for (int i = 0; i < constructors.length; i++) {
-                    //Log.i("DEBUG", "Constructor " + i + "...\n");
                     Class[] argt = constructors[i].getParameterTypes();
 
-                    //Log.i("DEBUG", "Trying to construct...");
                     Object instance = null;
 
                     if (argt.length == 0) {
@@ -473,10 +518,10 @@ public class Value_Generator {
                             constructors[i].setAccessible(true);
                             instance = constructors[i].newInstance();
                         } catch (SecurityException e){
-                            //Log.e("Exception!", "cant make constructor accessible :(");
+                            Log.w("Exception!", "cant make constructor accessible :(");
                             continue;
                         } catch (InstantiationException e) {
-                            //Log.e("Exception!", "cant instantiate :(");
+                            Log.w("Exception!", "cant instantiate :(");
                             continue;
                         }
                     } else {
@@ -486,13 +531,13 @@ public class Value_Generator {
                             try {
                                 DebugOutput.printArgs(argv);
                             } catch (NullPointerException e) {
-                                //Log.e("Exception!", "cant create one or more of args :(");
+                                Log.w("Exception!", "cant create one or more of args :(");
                                 continue;
                             }
 
                             instance = constructors[i].newInstance(argv);
                         } catch (SecurityException e){
-                            //Log.e("Exception!", "cant make constructor accessible :(");
+                            Log.w("Exception!", "cant make constructor accessible :(");
                             continue;
                         }
                     }
@@ -530,12 +575,15 @@ public class Value_Generator {
         return null;
     }
 
-    // Check if this type have constructors and correct instance can be created
+    /**
+     * Check if this type have constructors and correct instance can be created
+     * @param className name of checking class as as string
+     * @return can be implemented
+     */
     boolean tryToImplement (String className) {
         try {
             Class classToImpl = Class.forName(className);
             Constructor<?> constructors[] = Class.forName(className).getDeclaredConstructors();
-
             if (constructors.length == 0 || Modifier.isAbstract(classToImpl.getModifiers()))
                 return false;
 
@@ -546,27 +594,31 @@ public class Value_Generator {
         return true;
     }
 
+    /**
+     * Generating values by type-array
+     * @param argt array of classes to be instantiated
+     * @param callStack stack of construction
+     * @return array of generated values
+     */
     // Returns a list of arguments of considered constructor
     Object[] prepareParams(Class[] argt, ArrayList<String> callStack) {
         Object[] argv = new Object[argt.length];
         for (int i = 0; i < argt.length; i++) {
-            //Log.i("DEBUG", "arg " + i + " type = " + argt[i].getName() + "\n");
-
             argv[i] = generateValue(argt[i].getName(), callStack);
             if (argv[i] != null)
                 continue;
-
             argv[i] = null;
-            // argv[i] = new Object();
         }
         return argv;
     }
 
-    // Trying to get more realistic object with filling its fields with generated data.
+    /**
+     * Trying to get more realistic object with filling its fields with generated data.
+     * @param target object that need to be mutated
+     */
     public void fuzzInstance(Object target) {
         Field[] fields = target.getClass().getDeclaredFields();
 
-        //Log.i("fuzzing", "Class = " + target.getClass().getName());
         for (int i = 0; i < fields.length; i++) {
             fields[i].setAccessible(true);
             try {
@@ -582,6 +634,9 @@ public class Value_Generator {
         }
     }
 
+    /**
+     * @return random class from class store
+     */
     private Class generateClass()
     {
         Class instance;

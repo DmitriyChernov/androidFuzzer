@@ -4,9 +4,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.example.konyash.fuzzer.generator.Value_Generator;
-import com.example.konyash.fuzzer.logging.UDP_Client;
-import com.example.konyash.fuzzer.main.MainActivity;
+import com.example.konyash.fuzzer.Control.Controller;
 import com.example.konyash.fuzzer.utils.AndroidServiceNames;
 
 import java.io.BufferedReader;
@@ -23,29 +21,24 @@ import java.util.ArrayList;
 
 public class AIDLFuzzer extends IFuzzer  {
 
-    // Name of services file in aidl annotation
-    private final String aidlsFilename = "services";
-
     // Method that was invoked last.
     private String currentMethod;
 
-    public AIDLFuzzer(MainActivity mainActivity) {
-        super(mainActivity);
+    public AIDLFuzzer(Controller controller) {
+        super(controller);
     }
 
 
-    // File to read consist of classes and their accessible methods.
-    // Structure of this file described below:
-    // ==
-    // Class classname
-    // 1 returnType method1(argtype1 arg1, ...)
-    // ...
-    // ==
+    /** File to read consist of classes and their accessible methods.
+    * Structure of this file described below:
+    * ==
+    * Class classname
+    * 1 returnType method1(argtype1 arg1, ...)
+    * ...
+    * ==
+    */
     public void fuzz() throws InstantiationException, IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        ArrayList<String> classes = new ArrayList<String>();
         BufferedReader br = null;
-        int num = 1;
-        boolean supported = true;
         boolean prevSkiped = false;
         String className = "";
 
@@ -53,7 +46,7 @@ public class AIDLFuzzer extends IFuzzer  {
 
             String line;
 
-            InputStream iS = mainActivity.getResources().getAssets().open(aidlsFilename);
+            InputStream iS = Controller.getAIDLFile();
             br = new BufferedReader(new InputStreamReader(iS));
 
             Object obj = null;
@@ -104,7 +97,7 @@ public class AIDLFuzzer extends IFuzzer  {
                             name = name.substring(name.indexOf(' ') + 1, name.length());
                             meth = name;
                             isNameFinished = true;
-                        // Retrieving method arguments
+                            // Retrieving method arguments
                         } else if (isNameFinished) {
                             try {
                                 String types = line.substring(i, line.length() - 3);
@@ -128,15 +121,7 @@ public class AIDLFuzzer extends IFuzzer  {
                 }
             }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (IOException | ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -149,6 +134,11 @@ public class AIDLFuzzer extends IFuzzer  {
         }
     }
 
+    /**
+     * Skipping description of a method that can be in aidls file
+     * @param br reader of aidl file
+     * @return classname as string
+     */
     private String skipMethodsDescription(BufferedReader br)
     {
         String line;
@@ -170,7 +160,11 @@ public class AIDLFuzzer extends IFuzzer  {
         return "EOF";
     }
 
-    // Returns stub-like object of a class. Returning value is system service.
+    /**
+     * Getting stub-like system service from context
+     * @param cl class name of a service
+     * @return stub-like object of a class. Returning value is system service.
+     */
     public Object getStubService(String cl) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         String serviceManagerName = "android.os.ServiceManager";
         String serviceManagerNativeName = "android.os.ServiceManagerNative";

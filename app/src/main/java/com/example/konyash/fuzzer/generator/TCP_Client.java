@@ -23,6 +23,10 @@ public class TCP_Client extends AsyncTask<String,Void,String> {
         this.fuzzer = fuzzer;
     }
 
+    /**
+     * Work must to be done after tread was executed
+     * @param res adds this value to response queue
+     */
     @Override
     protected void onPostExecute(String res)
     {
@@ -36,6 +40,11 @@ public class TCP_Client extends AsyncTask<String,Void,String> {
         super.onPostExecute(res);
     }
 
+    /**
+     * Async task that communicates with remote radamsa
+     * @param params must be an array of 2 Strings: first is a radamsa command; second is a options of call
+     * @return results of radamsa call on remotes server
+     */
     @Override
     protected String doInBackground(String... params)
     {

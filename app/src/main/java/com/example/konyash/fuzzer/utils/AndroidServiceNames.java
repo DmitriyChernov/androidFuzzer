@@ -8,7 +8,11 @@ import android.util.Log;
 
 public class AndroidServiceNames {
 
-    // Returns service name needed by Binder to retrieve object.
+    /**
+     * Converts service class name to service name
+     * @param serviceClass service class name
+     * @return service name needed by Binder to retrieve object.
+     */
     public static String getServiceName(String serviceClass) {
         if (serviceClass.equals("IAccessibilityManager"))
             return "accessibility";

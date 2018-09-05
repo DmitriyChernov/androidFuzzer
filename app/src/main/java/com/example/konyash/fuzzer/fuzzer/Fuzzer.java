@@ -1,19 +1,13 @@
 package com.example.konyash.fuzzer.fuzzer;
 
 import android.content.Context;
-import android.os.Binder;
-import android.os.IBinder;
+import android.os.Bundle;
+import android.os.Message;
+import android.os.Parcel;
 import android.util.Log;
 
-import com.example.konyash.fuzzer.utils.AndroidServiceNames;
-import com.example.konyash.fuzzer.main.MainActivity;
-import com.example.konyash.fuzzer.logging.UDP_Client;
-import com.example.konyash.fuzzer.generator.Value_Generator;
+import com.example.konyash.fuzzer.Control.Controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -25,22 +19,28 @@ import java.util.ArrayList;
 
 public class Fuzzer extends IFuzzer {
 
-    public Fuzzer(MainActivity mainActivity) {
-        super(mainActivity);
+    public Fuzzer(Controller controller) {
+        super(controller);
     }
 
-
+    /**
+     * Start to fuzz all services that was got from context(MainActivity is a Context)
+     */
     @Override
     public void fuzz() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         ArrayList<String> ssNames = getSystemServicesFromContext();
         for (String ssName : ssNames) {
-            Object sysService = mainActivity.getApplicationContext().getSystemService(ssName);
+            Object sysService = Controller.getContext().getSystemService(ssName);
             try {
                 udpClient.Message = "\n|||||||||||||||||||||\n"
                         + "Fuzzing started for "
                         + sysService.getClass().getName() + " class.\n";
                 udpClient.sendMessage();
                 Log.i("Object: ", "" + sysService);
+                Message msg = new Message();
+                msg.what = 3;
+                msg.obj = sysService;
+                controller.sendMessage(msg);
             } catch (NullPointerException ex) {
                 continue;
             }
@@ -76,9 +76,13 @@ public class Fuzzer extends IFuzzer {
 
 
 
+    /**
+     * Getting all system service names
+     * @return list of strings that is system service names
+     */
     public ArrayList<String> getSystemServicesFromContext() {
         ArrayList<String> services = new ArrayList<>();
-        Context context = mainActivity.getApplicationContext();
+        Context context = Controller.getContext();
         Class contextClass = context.getClass();
         Field[] fields = contextClass.getFields();
 

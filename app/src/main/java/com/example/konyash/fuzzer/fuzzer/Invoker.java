@@ -19,12 +19,25 @@ public class Invoker {
     private Value_Generator generator;
     private final int callCount;
 
+    /**
+     * Constructs invoker: object that invokes methods of services
+     * @param udpClient to log
+     * @param generator to generate values
+     * @param callCount number of iterative calls of each method
+     */
     public Invoker(UDP_Client udpClient, Value_Generator generator, int callCount) {
         this.udpClient = udpClient;
         this.generator = generator;
         this.callCount = callCount;
     }
 
+    /**
+     * Invokes method of given object
+     * @param obj target to invoke
+     * @param meth name of method to invoke
+     * @param argt array of classes that is arguments of method
+     * @param argv array of values this is arguments of methods
+     */
     public void invokeMethod(Object obj, String meth, Class[] argt, Object[] argv) {
         int argc = argt.length;
         Log.i("invoke: ", " obj: " + obj
@@ -88,7 +101,16 @@ public class Invoker {
 
     }
 
-    // Invokes target method of target object. It is system call in target context.
+    /**
+     * Invokes target method of target object. It is system call in target context.
+     * @param obj target to invoke
+     * @param meth name of method to invoke
+     * @param types array of string names of classes that is arguments of method
+     * @throws NoSuchMethodException
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     * @throws ClassNotFoundException
+     */
     public void invokeMethodByTypes(Object obj, String meth, ArrayList<String> types)
             throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException {
         int argc = types.size();

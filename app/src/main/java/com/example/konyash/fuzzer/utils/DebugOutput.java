@@ -9,7 +9,10 @@ import java.util.Hashtable;
 
 public class DebugOutput {
 
-    // Debug output. Prints declared methods for a target object class.
+    /**
+     * Debug output. Prints declared methods for a target object class.
+     * @param target debugging target object
+     */
     public static void printDeclaredMethods(Class target)
     {
         Method[] meths = target.getDeclaredMethods();
@@ -24,7 +27,10 @@ public class DebugOutput {
         }
     }
 
-    // Debug output. Prints declared fields for a target object class.
+    /**
+     * Debug output. Prints declared fields for a target object class.
+     * @param target debugging target object
+     */
     public static void printDeclaredFields(Class target) {
         Field[] fields = target.getDeclaredFields();
 
@@ -36,7 +42,10 @@ public class DebugOutput {
         }
     }
 
-    // Debug output. Prints fields for a target object.
+    /**
+     * Debug output. Prints fields for a target object.
+     * @param target debugging target object
+     */
     public static void printFields(Object target) {
         Field[] fields = target.getClass().getFields();
 
@@ -56,7 +65,10 @@ public class DebugOutput {
         }
     }
 
-    // Debug output. Prints args inputed as object array for a target object class.
+    /**
+     * Debug output. Prints args inputed as object array for a target object class.
+     * @param argv debugging objects array
+     */
     public static void printArgs(Object[] argv)
     {
         Log.i("ARGS: ", "count = " + argv.length);

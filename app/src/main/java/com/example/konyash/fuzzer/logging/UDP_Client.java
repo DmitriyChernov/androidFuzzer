@@ -12,6 +12,9 @@ public class UDP_Client {
     private AsyncTask<Void, Void, Void> async_cient;
     public String Message;
 
+    /**
+     * Sending message to remote logger for safety
+     */
     public synchronized void sendMessage() {
         async_cient = new AsyncTask<Void, Void, Void>() {
             @Override

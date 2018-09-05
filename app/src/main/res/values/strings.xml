@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Fuzzer</string>
     <string name="action_settings">Settings</string>
-    <string name="btnFuzzText">Fuzz.</string>
-    <string name="btnReadText">Fuzz by config.</string>
+    <string name="btnFuzzText">Fuzz</string>
+    <string name="btnReadText">Fuzz by config</string>
     <string name="btnTestText">Debug</string>
-    <string name="textViewText">Test</string>
+    <string name="textViewText">ANDROID SERVICES FUZZER</string>
 </resources>

@@ -103,6 +103,11 @@ public class ReflectionUtils {
         return classNames;
     }
 
+    /**
+     * Trying to find subclasses of a class
+     * @param context application context
+     * @param parent target for searching
+     */
     public static void findSubClasses(Context context, Class parent) {
         ApplicationInfo ai = context.getApplicationInfo();
         String classPath = ai.sourceDir;
@@ -136,25 +141,6 @@ public class ReflectionUtils {
                 e.printStackTrace();
             }
         }
-    }
-
-    public static String[] test(MainActivity ma, String packageName) throws IOException {
-
-        ArrayList<String> classes = new ArrayList<String>();
-        try {
-            String packageCodePath = ma.getPackageCodePath();
-            DexFile df = new DexFile(packageCodePath);
-            for (Enumeration<String> iter = df.entries(); iter.hasMoreElements(); ) {
-                String className = iter.nextElement();
-                if (className.contains(packageName)) {
-                    classes.add(className.substring(className.lastIndexOf(".") + 1, className.length()));
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return classes.toArray(new String[classes.size()]);
     }
 }
 
